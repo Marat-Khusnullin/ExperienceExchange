@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ExperienceExchange</string>
+    <string name="welcome">Welcome!</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="registration">Registration</string>
+    <string name="forgot_password">Forgot the passsword?</string>
+    <string name="connection_error">Internet connection error!</string>
+    <string name="server_error">Server error!</string>
+    <string name="submit">submit</string>
+    <string name="email">Email</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="i_am_accepting_license_agreement">I\'am accepting license agreement</string>
+</resources>

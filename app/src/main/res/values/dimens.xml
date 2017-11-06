@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_padding">10dp</dimen>
+
+
+    <dimen name="small_text_size">8sp</dimen>
+    <dimen name="medium_text_size">15sp</dimen>
+    <dimen name="large_text_size">20sp</dimen>
+    <dimen name="extra_large_text_size">25sp</dimen>
+
+    <dimen name="minButtonWidth">61dp</dimen>
+    <dimen name="minButtonHeight">33dp</dimen>
+</resources>
