@@ -14,7 +14,7 @@ public class RegistrationBody {
     public RegistrationBody() {
     }
 
-    public RegistrationBody(String login, String password, String email, String firstname, String lastname) {
+    public RegistrationBody(String login, String email, String password, String firstname, String lastname) {
         this.login = login;
         this.password = password;
         this.email = email;

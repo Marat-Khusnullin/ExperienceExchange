@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,4 +7,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.ruslanio.experienceexchange.views.HomeActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:textSize="@dimen/extra_large_text_size"
+        android:textColor="@color/accent"
+        android:text="HOME ACTIVITY"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -34,7 +34,7 @@ public class RegistrationActivityPresenter extends BasePresenter<RegistrationAct
         mApiManager.register(registrationBody)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(registrationResponce -> {
-                    if (registrationResponce.getStatus() == 200) {
+                    if (registrationResponce.getStatus() == 201) {
                         Result result = registrationResponce.getResult();
                         saveData(result.getId(), result.getToken());
                         nextView();
