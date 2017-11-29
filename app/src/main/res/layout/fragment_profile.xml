@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/item_padding">
+
+            <ImageView
+                android:id="@+id/iv_profile_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_profile_last_name"
+                    style="@style/Label.White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Мирхусаинов"/>
+
+
+                <TextView
+                    android:id="@+id/tv_profile_first_name"
+                    style="@style/Label.White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Руслан"/>
+
+                <TextView
+                    android:id="@+id/tv_profile_middle_name"
+                    style="@style/Label.White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Радикович"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="@dimen/item_padding">
+
+                <ImageButton
+                    android:id="@+id/ibtn_profile_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_settings"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/medium_padding">
+
+            <TextView
+                style="@style/Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/base_information"
+                android:textSize="@dimen/large_text_size"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                    android:id="@+id/tv_profile_age"
+                    style="@style/Label.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="25"
+                    app:title_text="@string/age"/>
+
+
+                <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                    android:id="@+id/tv_profile_country"
+                    style="@style/Label.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Russia"
+                    app:title_text="@string/country"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                    android:id="@+id/tv_profile_gender"
+                    style="@style/Label.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Male"
+                    app:title_text="@string/gender"/>
+
+                <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                    android:id="@+id/tv_profile_city"
+                    style="@style/Label.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Kazan"
+                    app:title_text="@string/city"/>
+            </LinearLayout>
+
+            <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                android:id="@+id/tv_profile_birthday"
+                style="@style/Label.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="28.05.1997"
+                app:title_text="@string/birthday"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_margin="@dimen/medium_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:padding="@dimen/medium_padding"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                style="@style/Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/social_activity"
+                android:textSize="@dimen/large_text_size"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                    android:id="@+id/tv_profile_karma"
+                    style="@style/Label.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3,91"
+                    app:title_text="@string/karma"/>
+
+                <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                    android:id="@+id/tv_profile_finished_courses"
+                    style="@style/Label.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2"
+                    app:title_text="@string/finished_courses"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                    android:id="@+id/tv_profile_comments"
+                    style="@style/Label.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="11"
+                    app:title_text="@string/comments"/>
+
+                <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                    android:id="@+id/tv_profile_created_courses"
+                    style="@style/Label.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1"
+                    app:title_text="@string/created_courses"/>
+            </LinearLayout>
+
+            <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                android:id="@+id/tv_profile_Total_likes"
+                style="@style/Label.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="28"
+                app:title_text="@string/total_likes"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

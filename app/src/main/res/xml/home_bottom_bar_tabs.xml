@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        icon="@drawable/ic_home_selected"
+        id="@+id/tab_home"
+        title="Home"/>
+
+    <tab
+        icon="@drawable/ic_in_progress_selected"
+        id="@+id/tab_in_progress"
+        title="In progress"/>
+
+    <tab
+        icon="@drawable/ic_my_selected"
+        id="@+id/tab_my"
+        title="My"/>
+
+    <tab
+        icon="@drawable/ic_profile_selected"
+        id="@+id/tab_profile"
+        title="Profile"/>
+</tabs>

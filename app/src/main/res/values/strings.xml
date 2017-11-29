@@ -12,4 +12,18 @@
     <string name="last_name">Last name</string>
     <string name="first_name">First name</string>
     <string name="i_am_accepting_license_agreement">I\'am accepting license agreement</string>
+    <string name="interests">Interests</string>
+    <string name="ready">Ready!</string>
+    <string name="age">Age</string>
+    <string name="country">Country</string>
+    <string name="gender">Gender</string>
+    <string name="city">City</string>
+    <string name="birthday">Birthday</string>
+    <string name="base_information">Base information:</string>
+    <string name="social_activity">Social Activity:</string>
+    <string name="karma">Karma</string>
+    <string name="finished_courses">Finished courses</string>
+    <string name="comments">Comments</string>
+    <string name="created_courses">Created courses</string>
+    <string name="total_likes">Total likes</string>
 </resources>

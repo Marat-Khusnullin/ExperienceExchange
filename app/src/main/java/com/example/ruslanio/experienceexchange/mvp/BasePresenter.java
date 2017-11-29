@@ -11,6 +11,8 @@ import com.example.ruslanio.experienceexchange.interfaces.presenter.BasePresente
 import com.example.ruslanio.experienceexchange.interfaces.view.BaseViewInterface;
 import com.example.ruslanio.experienceexchange.utils.rxbus.RxBus;
 
+import io.realm.Realm;
+
 /**
  * Created by Ruslanio on 06.11.2017.
  */
@@ -22,12 +24,14 @@ public abstract class BasePresenter<T extends BaseViewInterface> implements Base
     protected static final String ID_KEY = "key_id";
 
     private RxBus mRxBus;
+    protected Realm mDatabase;
     protected T mView;
     protected Context mContext;
 
     public BasePresenter(T view) {
         mView = view;
         mContext = view.getContext().getApplicationContext();
+        mDatabase = Realm.getInstance(mContext);
         mRxBus = ((EEAplication) mContext).getEventBus();
     }
 
@@ -89,7 +93,7 @@ public abstract class BasePresenter<T extends BaseViewInterface> implements Base
 
     @Override
     public void onDestroy() {
-
+        mDatabase.close();
     }
 
     @Override

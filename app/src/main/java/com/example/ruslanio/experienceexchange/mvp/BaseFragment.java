@@ -26,6 +26,7 @@ public abstract class BaseFragment<T extends BasePresenterInterface> extends Fra
 
 
     protected T mPresenter;
+
     protected abstract T getPresenter();
     @LayoutRes
     protected abstract int getLayout();

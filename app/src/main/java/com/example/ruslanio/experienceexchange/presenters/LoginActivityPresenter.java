@@ -10,8 +10,7 @@ import com.example.ruslanio.experienceexchange.interfaces.view.LoginActivityView
 import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
 import com.example.ruslanio.experienceexchange.network.ApiManager;
 import com.example.ruslanio.experienceexchange.network.body.LoginBody;
-import com.example.ruslanio.experienceexchange.views.HomeActivity;
-import com.example.ruslanio.experienceexchange.views.LoginActivity;
+import com.example.ruslanio.experienceexchange.views.ChoiceView;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -46,7 +45,7 @@ public class LoginActivityPresenter extends BasePresenter<LoginActivityViewInter
     }
 
     private void nextView() {
-        Intent intent = new Intent(mView.getContext(), HomeActivity.class);
+        Intent intent = new Intent(mView.getContext(), ChoiceView.class);
         mView.startActivity(intent);
     }
 

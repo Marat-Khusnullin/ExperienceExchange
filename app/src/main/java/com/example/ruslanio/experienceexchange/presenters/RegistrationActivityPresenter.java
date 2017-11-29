@@ -11,7 +11,6 @@ import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
 import com.example.ruslanio.experienceexchange.network.ApiManager;
 import com.example.ruslanio.experienceexchange.network.body.RegistrationBody;
 import com.example.ruslanio.experienceexchange.network.pojo.registration.Result;
-import com.example.ruslanio.experienceexchange.views.HomeActivity;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -47,7 +46,7 @@ public class RegistrationActivityPresenter extends BasePresenter<RegistrationAct
     }
 
     private void nextView() {
-        Intent intent = new Intent(mView.getContext(), HomeActivity.class);
+        Intent intent = new Intent(mView.getContext(), ChoiceView.class);
         mView.startActivity(intent);
     }
 

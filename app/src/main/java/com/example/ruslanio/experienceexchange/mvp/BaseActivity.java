@@ -14,12 +14,14 @@ import com.example.ruslanio.experienceexchange.interfaces.presenter.BasePresente
 import com.example.ruslanio.experienceexchange.interfaces.view.BaseViewInterface;
 
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
 /**
  * Created by Ruslanio on 06.11.2017.
  */
 
 public abstract class BaseActivity<T extends BasePresenterInterface> extends AppCompatActivity implements BaseViewInterface{
+
 
     protected T mPresenter;
 

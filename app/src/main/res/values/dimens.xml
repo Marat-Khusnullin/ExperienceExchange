@@ -5,9 +5,13 @@
 
     <dimen name="small_text_size">8sp</dimen>
     <dimen name="medium_text_size">15sp</dimen>
+    <dimen name="extra_medium_text_size">17sp</dimen>
     <dimen name="large_text_size">20sp</dimen>
     <dimen name="extra_large_text_size">25sp</dimen>
 
     <dimen name="minButtonWidth">61dp</dimen>
     <dimen name="minButtonHeight">33dp</dimen>
+
+    <dimen name="medium_margin">5dp</dimen>
+    <dimen name="medium_padding">5dp</dimen>
 </resources>

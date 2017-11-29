@@ -2,13 +2,10 @@ package com.example.ruslanio.experienceexchange.views;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.ruslanio.experienceexchange.R;
-import com.example.ruslanio.experienceexchange.interfaces.presenter.BasePresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.LoginActivityPresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.LoginActivityViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BaseActivity;
@@ -46,9 +43,13 @@ public class LoginActivity extends BaseActivity<LoginActivityPresenterInterface>
     @Override
     protected void onInit() {
         mLoginButton.setOnClickListener(btn ->
-                mPresenter.onLogin(mLogin.getText().toString(),mPassword.getText().toString()));
+                mPresenter.onLogin(mLogin.getText().toString(), mPassword.getText().toString()));
         mRegButton.setOnClickListener(btn -> {
-            Intent intent = new Intent(getContext(),RegistrationActivity.class);
+            Intent intent = new Intent(getContext(), RegistrationActivity.class);
+            startActivity(intent);
+        });
+        mForgotPass.setOnClickListener(btn -> {
+            Intent intent = new Intent(getContext(), ChoiceView.class);
             startActivity(intent);
         });
     }
