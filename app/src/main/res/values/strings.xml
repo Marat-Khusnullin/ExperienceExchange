@@ -26,4 +26,9 @@
     <string name="comments">Comments</string>
     <string name="created_courses">Created courses</string>
     <string name="total_likes">Total likes</string>
+    <string name="home">Home</string>
+    <string name="popular_authors">Popular authors</string>
+    <string name="popular_themes">Popular themes</string>
+    <string name="recommended_courses">Recommended courses</string>
+    <string name="tell_us_what_you_like">Tell us what you like!</string>
 </resources>

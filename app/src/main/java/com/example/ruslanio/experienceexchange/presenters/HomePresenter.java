@@ -1,36 +1,41 @@
 package com.example.ruslanio.experienceexchange.presenters;
 
-import com.example.ruslanio.experienceexchange.R;
+import android.os.Bundle;
+
 import com.example.ruslanio.experienceexchange.interfaces.presenter.HomePresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.HomeViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created by Ruslanio on 18.11.2017.
+ * Created by Ruslanio on 29.11.2017.
  */
 
-public class HomePresenter extends BasePresenter<HomeViewInterface> implements HomePresenterInterface {
-
+public class HomePresenter extends BasePresenter<HomeViewInterface>  implements HomePresenterInterface {
     public HomePresenter(HomeViewInterface view) {
         super(view);
     }
 
     @Override
-    public void onTabClicked(int tabId) {
-        switch (tabId){
-            case R.id.tab_home:
-                break;
-            case R.id.tab_in_progress:
-                break;
-            case R.id.tab_my:
-                break;
-            case R.id.tab_profile:
-                openProfile();
-                break;
-        }
-    }
+    public void onInit(Bundle saveInstanceState) {
+        super.onInit(saveInstanceState);
 
-    private void openProfile() {
-        mView.showProfile();
+        List<String> themes = new ArrayList<>();
+        themes.add("IT");
+        themes.add("Cocking");
+        themes.add("Driving");
+        themes.add("Sport");
+
+        List<String> authors = new ArrayList<>();
+        authors.add("John Kennedy");
+        authors.add("Victor Reznov");
+        authors.add("Guy Richy");
+
+        mView.setAuthors(authors);
+        mView.setThemes(themes);
+
+
     }
 }

@@ -17,9 +17,17 @@
         <item name="android:textSize">@dimen/medium_text_size</item>
     </style>
 
+    <style name="Label.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Label.Accent">
         <item name="android:textColor">@color/accent</item>
         <item name="android:textSize">@dimen/extra_large_text_size</item>
+    </style>
+
+    <style name="Label.SmallAccent">
+        <item name="android:textColor">@color/accent</item>
     </style>
 
     <style name="Label.Secondary">

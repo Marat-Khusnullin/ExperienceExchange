@@ -1,5 +1,6 @@
 package com.example.ruslanio.experienceexchange.views;
 
+import android.content.Intent;
 import android.widget.Button;
 
 import com.example.ruslanio.experienceexchange.R;
@@ -46,6 +47,8 @@ public class ChoiceView extends BaseActivity<ChoicePresenterInterface> implement
         strings.add("string");
         strings.add("string");
 
+        mBubblePicker = (BubblePicker) findViewById(R.id.interest_bubble_picker);
+
         mAdapter = new BubbleInterestAdapter(strings,getContext());
         mBubblePicker.setAdapter(mAdapter);
         mBubblePicker.setCenterImmediately(true);
@@ -59,6 +62,11 @@ public class ChoiceView extends BaseActivity<ChoicePresenterInterface> implement
             public void onBubbleDeselected(PickerItem pickerItem) {
                 mPresenter.onInterestDeselected(pickerItem);
             }
+        });
+
+        mReady.setOnClickListener(btn ->{
+            Intent intent = new Intent(getContext(),MainView.class);
+            startActivity(intent);
         });
     }
 

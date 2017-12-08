@@ -11,6 +11,7 @@ import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
 import com.example.ruslanio.experienceexchange.network.ApiManager;
 import com.example.ruslanio.experienceexchange.network.body.RegistrationBody;
 import com.example.ruslanio.experienceexchange.network.pojo.registration.Result;
+import com.example.ruslanio.experienceexchange.views.ChoiceView;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
