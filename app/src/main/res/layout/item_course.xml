@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="@dimen/medium_margin"
@@ -11,50 +12,109 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:padding="@dimen/large_padding"
-            android:background="@color/primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/primary"
+            android:orientation="horizontal"
+            android:padding="@dimen/large_padding">
 
             <ImageView
-                android:layout_weight=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:src="@drawable/ic_account_base_avatar"/>
 
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
-                    android:textSize="@dimen/extra_medium_text_size"
-                    style="@style/Label.White"
-                    android:text="How to learn russian in 4 days"
                     android:id="@+id/course_name"
+                    style="@style/Label.White"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="How to learn russian in 4 days"
+                    android:textSize="@dimen/extra_medium_text_size"/>
 
                 <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
-                    android:textSize="@dimen/medium_text_size"
                     android:id="@+id/course_author"
                     style="@style/Label.White"
-                    android:text="Barrack Ivanovich Obama"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="Barrack Ivanovich Obama"
+                    android:textSize="@dimen/medium_text_size"/>
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/course_to_process"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_weight="1"
                 android:background="@color/transparent"
-                android:src="@drawable/ic_lightbulb_empty_white"
+                android:src="@drawable/ic_lightbulb_empty_white"/>
+        </LinearLayout>
+
+        <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+            android:id="@+id/course_short_description"
+            style="@style/Label.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium_margin"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in "/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/course_details"
+                style="@style/Button.Flat"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/details"
+                android:textSize="@dimen/medium_text_size"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.example.ruslanio.experienceexchange.utils.views.EntitledTextView
+                android:id="@+id/course_available_lessons"
+                style="@style/Label.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3"
+                app:title_text="@string/available_lessons"/>
+
+            <LinearLayout
+                android:id="@+id/course_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+                    style="@style/Label.Red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_like_empty"/>
+            </LinearLayout>
+
+
         </LinearLayout>
 
     </LinearLayout>

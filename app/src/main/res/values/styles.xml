@@ -30,6 +30,10 @@
         <item name="android:textColor">@color/accent</item>
     </style>
 
+    <style name="Label.Red">
+        <item name="android:textColor">@color/red_likes</item>
+    </style>
+
     <style name="Label.Secondary">
         <item name="android:textColor">@color/secondary_text</item>
     </style>

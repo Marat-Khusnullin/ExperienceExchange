@@ -31,4 +31,6 @@
     <string name="popular_themes">Popular themes</string>
     <string name="recommended_courses">Recommended courses</string>
     <string name="tell_us_what_you_like">Tell us what you like!</string>
+    <string name="details">Details...</string>
+    <string name="available_lessons">Available lessons</string>
 </resources>
