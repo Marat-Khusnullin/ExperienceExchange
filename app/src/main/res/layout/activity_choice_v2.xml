@@ -27,13 +27,13 @@
             android:src="@drawable/ic_arrow_right"/>
     </LinearLayout>
 
-    <TextView
+    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
         style="@style/Label.Accent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/interests"/>
-    <TextView
+    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
         style="@style/Label.Secondary"
         android:textSize="@dimen/medium_text_size"
         android:text="@string/tell_us_what_you_like"

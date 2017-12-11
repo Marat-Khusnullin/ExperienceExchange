@@ -50,7 +50,7 @@ public class PopularThemesAdapter extends RecyclerView.Adapter<PopularThemesAdap
 
         public ThemeViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(true,itemView);
+            ButterKnife.bind(this,itemView);
         }
 
         void bind(int position){

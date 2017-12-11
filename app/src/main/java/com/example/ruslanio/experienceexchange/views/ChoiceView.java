@@ -47,7 +47,6 @@ public class ChoiceView extends BaseActivity<ChoicePresenterInterface> implement
         strings.add("string");
         strings.add("string");
 
-        mBubblePicker = (BubblePicker) findViewById(R.id.interest_bubble_picker);
 
         mAdapter = new BubbleInterestAdapter(strings,getContext());
         mBubblePicker.setAdapter(mAdapter);
@@ -85,6 +84,6 @@ public class ChoiceView extends BaseActivity<ChoicePresenterInterface> implement
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_choice;
+        return R.layout.activity_choice_v2;
     }
 }

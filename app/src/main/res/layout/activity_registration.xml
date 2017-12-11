@@ -10,7 +10,7 @@
     android:padding="@dimen/item_padding"
     tools:context="com.example.ruslanio.experienceexchange.views.RegistrationActivity">
 
-    <TextView
+    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
         style="@style/Label.Accent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

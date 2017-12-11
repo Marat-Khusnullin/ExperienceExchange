@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
 
-    <TextView
+    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
         style="@style/Label.SmallAccent"
         android:id="@+id/tv_popular_theme"
         android:text="Football"

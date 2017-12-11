@@ -12,7 +12,7 @@ import com.example.ruslanio.experienceexchange.R;
  * Created by Ruslanio on 27.11.2017.
  */
 
-public class EntitledTextView extends android.support.v7.widget.AppCompatTextView {
+public class EntitledTextView extends TypefaceTextView {
     private String mTitle;
 
     public String getTitle() {
