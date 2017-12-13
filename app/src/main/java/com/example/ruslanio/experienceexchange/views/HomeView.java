@@ -1,13 +1,13 @@
 package com.example.ruslanio.experienceexchange.views;
 
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.adapters.PopularAuthorsAdapter;
 import com.example.ruslanio.experienceexchange.adapters.PopularThemesAdapter;
-import com.example.ruslanio.experienceexchange.adapters.RecommendedCoursesAdapter;
+import com.example.ruslanio.experienceexchange.adapters.CoursesAdapter;
+import com.example.ruslanio.experienceexchange.database.model.Course;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.HomePresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.HomeViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BaseFragment;
@@ -32,7 +32,7 @@ public class HomeView extends BaseFragment<HomePresenterInterface> implements Ho
 
     private PopularAuthorsAdapter mAuthorsAdapter;
     private PopularThemesAdapter mThemesAdapter;
-    private RecommendedCoursesAdapter mCoursesAdapter;
+    private CoursesAdapter mCoursesAdapter;
 
     @Override
     protected HomePresenterInterface getPresenter() {
@@ -45,7 +45,7 @@ public class HomeView extends BaseFragment<HomePresenterInterface> implements Ho
 
         mAuthorsAdapter = new PopularAuthorsAdapter();
         mThemesAdapter = new PopularThemesAdapter();
-        mCoursesAdapter = new RecommendedCoursesAdapter();
+        mCoursesAdapter = new CoursesAdapter();
 
         mPopularAuthors.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         mPopularThemes.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
@@ -73,8 +73,8 @@ public class HomeView extends BaseFragment<HomePresenterInterface> implements Ho
     }
 
     @Override
-    public void setCourses(List<String> courses) {
-        //TODO courses
+    public void setCourses(List<Course> courses) {
+        mCoursesAdapter.setCourses(courses);
     }
 
     public static HomeView getInstance() {

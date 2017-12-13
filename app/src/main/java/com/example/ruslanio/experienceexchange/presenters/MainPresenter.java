@@ -22,6 +22,7 @@ public class MainPresenter extends BasePresenter<MainViewInterface> implements M
                 openHome();
                 break;
             case R.id.tab_in_progress:
+                opeInProgress();
                 break;
             case R.id.tab_my:
                 break;
@@ -29,6 +30,10 @@ public class MainPresenter extends BasePresenter<MainViewInterface> implements M
                 openProfile();
                 break;
         }
+    }
+
+    private void opeInProgress() {
+        mView.showInProgress();
     }
 
     private void openHome() {

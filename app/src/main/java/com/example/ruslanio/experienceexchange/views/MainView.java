@@ -21,6 +21,8 @@ public class MainView extends BaseActivity<MainPresenterInterface>
 
     private static final String TAG_PROFILE = "tag_profile";
     private static final String TAG_HOME = "tag_home";
+    private static final String TAG_IN_PROGRESS = "tag_in_progress";
+    private static final String TAG_MY = "tag_my";
 
 
     @BindView(R.id.home_bottom_bar)
@@ -64,6 +66,19 @@ public class MainView extends BaseActivity<MainPresenterInterface>
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container,home,TAG_HOME)
+                .commit();
+    }
+
+    @Override
+    public void showInProgress() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment inProgress = fragmentManager.findFragmentByTag(TAG_IN_PROGRESS);
+
+        if (inProgress == null)
+            inProgress = CourseInProgressView.getInstance();
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.main_container,inProgress,TAG_IN_PROGRESS)
                 .commit();
     }
 }

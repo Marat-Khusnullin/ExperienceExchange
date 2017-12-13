@@ -4,4 +4,10 @@
     <declare-styleable name="EntitledTextView">
         <attr name="title_text" format="string"/>
     </declare-styleable>
+    
+    <declare-styleable name="LikeView">
+        <attr name="like_number" format="integer"/>
+        <attr name="base_color" format="color"/>
+        <attr name="is_liked" format="boolean"/>
+    </declare-styleable>
 </resources>

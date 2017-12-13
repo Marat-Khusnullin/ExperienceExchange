@@ -8,4 +8,6 @@ public interface MainViewInterface extends BaseViewInterface {
     void showProfile();
 
     void showHome();
+
+    void showInProgress();
 }

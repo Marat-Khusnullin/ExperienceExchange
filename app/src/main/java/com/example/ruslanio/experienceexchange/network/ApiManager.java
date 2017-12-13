@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiManager {
     private static ApiManager mApiManager;
-    private final static String BASE_URL = "http://192.168.2.185:8080/api/v1/";
+    private final static String BASE_URL = "http://18.221.121.255:8080/exex/api/v1/";
 
     private final PostRequest mPostRequest;
     private final GetRequest mGetRequest;

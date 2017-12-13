@@ -1,5 +1,7 @@
 package com.example.ruslanio.experienceexchange.interfaces.view;
 
+import com.example.ruslanio.experienceexchange.database.model.Course;
+
 import java.util.List;
 
 /**
@@ -10,5 +12,5 @@ public interface HomeViewInterface extends BaseViewInterface {
 
     void setAuthors(List<String> authors);
     void setThemes(List<String> themes);
-    void setCourses(List<String> courses);
+    void setCourses(List<Course> courses);
 }
