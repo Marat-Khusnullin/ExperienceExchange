@@ -3,6 +3,7 @@ package com.example.ruslanio.experienceexchange.adapters;
 import android.content.Context;
 
 import com.example.ruslanio.experienceexchange.R;
+import com.example.ruslanio.experienceexchange.database.model.Interest;
 import com.igalata.bubblepicker.adapter.BubblePickerAdapter;
 import com.igalata.bubblepicker.model.PickerItem;
 
@@ -16,10 +17,10 @@ import java.util.List;
  */
 
 public class BubbleInterestAdapter implements BubblePickerAdapter {
-    private List<String> mInterests = Collections.emptyList();
+    private List<Interest> mInterests = Collections.emptyList();
     private Context mContext;
 
-    public BubbleInterestAdapter(List<String> interests, Context context) {
+    public BubbleInterestAdapter(List<Interest> interests, Context context) {
         mInterests = interests;
         mContext = context;
     }
@@ -35,8 +36,9 @@ public class BubbleInterestAdapter implements BubblePickerAdapter {
         PickerItem item = new PickerItem();
         item.setTextColor(mContext.getResources().getColor(R.color.white_text));
         item.setColor(mContext.getResources().getColor(R.color.accent));
-        item.setTitle(mInterests.get(i));
+        item.setTitle(mInterests.get(i).getInterestName());
 
         return item;
     }
+
 }

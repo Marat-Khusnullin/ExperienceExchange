@@ -11,10 +11,10 @@ public class LoginResponce {
     private Integer status;
     @SerializedName("result")
     @Expose
-    private String result;
+    private Result result;
     @SerializedName("error")
     @Expose
-    private Object error;
+    private String error;
 
     public Integer getStatus() {
         return status;
@@ -24,19 +24,19 @@ public class LoginResponce {
         this.status = status;
     }
 
-    public String getResult() {
+    public Result getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(Result result) {
         this.result = result;
     }
 
-    public Object getError() {
+    public String getError() {
         return error;
     }
 
-    public void setError(Object error) {
+    public void setError(String error) {
         this.error = error;
     }
 

@@ -40,7 +40,7 @@ public class MainView extends BaseActivity<MainPresenterInterface>
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_home;
+        return R.layout.activity_main;
     }
 
     @Override
@@ -79,6 +79,19 @@ public class MainView extends BaseActivity<MainPresenterInterface>
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container,inProgress,TAG_IN_PROGRESS)
+                .commit();
+    }
+
+    @Override
+    public void showMyCourses() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment myCourses = fragmentManager.findFragmentByTag(TAG_MY);
+
+        if (myCourses == null)
+            myCourses = MyCoursesView.getInstance();
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.main_container,myCourses,TAG_MY)
                 .commit();
     }
 }

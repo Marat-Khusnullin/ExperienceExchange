@@ -15,40 +15,53 @@
         app:title="@string/home"
         app:titleTextColor="@color/white_text"/>
 
-    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
-        style="@style/Label.Bold"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/popular_authors"
-        android:textSize="@dimen/extra_medium_text_size"/>
+        android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_home_popular_authors"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
-        style="@style/Label.Bold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/popular_themes"
-        android:textSize="@dimen/extra_medium_text_size"/>
+        <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+            style="@style/Label.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/popular_authors"
+            android:textSize="@dimen/extra_medium_text_size"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_home_popular_themes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_home_popular_authors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
-        style="@style/Label.Bold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recommended_courses"
-        android:textSize="@dimen/extra_medium_text_size"/>
+        <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+            style="@style/Label.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/popular_themes"
+            android:textSize="@dimen/extra_medium_text_size"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_home_recomended_courses"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_home_popular_themes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+            style="@style/Label.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recommended_courses"
+            android:textSize="@dimen/extra_medium_text_size"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginLeft="@dimen/medium_margin"
+            android:layout_marginRight="@dimen/medium_margin"
+            android:id="@+id/rv_home_recomended_courses"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

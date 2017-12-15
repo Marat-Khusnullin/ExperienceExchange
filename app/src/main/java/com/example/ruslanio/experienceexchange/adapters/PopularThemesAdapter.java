@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ruslanio.experienceexchange.R;
+import com.example.ruslanio.experienceexchange.database.model.Interest;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,9 +21,9 @@ import butterknife.ButterKnife;
 
 public class PopularThemesAdapter extends RecyclerView.Adapter<PopularThemesAdapter.ThemeViewHolder> {
 
-    private List<String> mThemes = Collections.emptyList();
+    private List<Interest> mThemes = Collections.emptyList();
 
-    public void setThemes(List<String> themes) {
+    public void setThemes(List<Interest> themes) {
         mThemes = themes;
         notifyDataSetChanged();
     }
@@ -54,7 +55,7 @@ public class PopularThemesAdapter extends RecyclerView.Adapter<PopularThemesAdap
         }
 
         void bind(int position){
-            mThemeName.setText(mThemes.get(position));
+            mThemeName.setText(mThemes.get(position).getInterestName());
         }
     }
 }

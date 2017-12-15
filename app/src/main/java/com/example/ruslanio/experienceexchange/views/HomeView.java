@@ -8,6 +8,7 @@ import com.example.ruslanio.experienceexchange.adapters.PopularAuthorsAdapter;
 import com.example.ruslanio.experienceexchange.adapters.PopularThemesAdapter;
 import com.example.ruslanio.experienceexchange.adapters.CoursesAdapter;
 import com.example.ruslanio.experienceexchange.database.model.Course;
+import com.example.ruslanio.experienceexchange.database.model.Interest;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.HomePresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.HomeViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BaseFragment;
@@ -50,6 +51,7 @@ public class HomeView extends BaseFragment<HomePresenterInterface> implements Ho
         mPopularAuthors.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         mPopularThemes.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         mRecommendedCourses.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecommendedCourses.setNestedScrollingEnabled(false);
 
         mPopularAuthors.setAdapter(mAuthorsAdapter);
         mPopularThemes.setAdapter(mThemesAdapter);
@@ -68,7 +70,7 @@ public class HomeView extends BaseFragment<HomePresenterInterface> implements Ho
     }
 
     @Override
-    public void setThemes(List<String> themes) {
+    public void setThemes(List<Interest> themes) {
         mThemesAdapter.setThemes(themes);
     }
 

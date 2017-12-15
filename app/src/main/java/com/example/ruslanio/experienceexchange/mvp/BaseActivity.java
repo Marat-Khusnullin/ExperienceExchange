@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity<T extends BasePresenterInterface> extends AppCompatActivity implements BaseViewInterface{
 
+    protected static final String KEY_INTERESTS_ID_LIST = "interest_bundle";
 
     protected T mPresenter;
 

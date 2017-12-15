@@ -2,7 +2,9 @@ package com.example.ruslanio.experienceexchange.presenters;
 
 import android.os.Bundle;
 
+import com.example.ruslanio.experienceexchange.database.DataBaseManager;
 import com.example.ruslanio.experienceexchange.database.model.Course;
+import com.example.ruslanio.experienceexchange.database.model.Interest;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.HomePresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.HomeViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
@@ -14,7 +16,11 @@ import java.util.List;
  * Created by Ruslanio on 29.11.2017.
  */
 
-public class HomePresenter extends BasePresenter<HomeViewInterface>  implements HomePresenterInterface {
+public class HomePresenter extends BasePresenter<HomeViewInterface> implements HomePresenterInterface {
+
+    private DataBaseManager mDataBaseManager;
+    private static final double MIN_POPULAR_PERCENTAGE = 0.0;
+
     public HomePresenter(HomeViewInterface view) {
         super(view);
     }
@@ -23,11 +29,10 @@ public class HomePresenter extends BasePresenter<HomeViewInterface>  implements 
     public void onInit(Bundle saveInstanceState) {
         super.onInit(saveInstanceState);
 
-        List<String> themes = new ArrayList<>();
-        themes.add("IT");
-        themes.add("Cocking");
-        themes.add("Driving");
-        themes.add("Sport");
+        mDataBaseManager = DataBaseManager.getInstance(mView.getContext());
+
+        mView.setThemes(getPopularInterests());
+
 
         List<String> authors = new ArrayList<>();
         authors.add("John Kennedy");
@@ -54,9 +59,18 @@ public class HomePresenter extends BasePresenter<HomeViewInterface>  implements 
         courses.add(course2);
 
         mView.setAuthors(authors);
-        mView.setThemes(themes);
         mView.setCourses(courses);
 
+    }
 
+
+
+    private List<Interest> getPopularInterests() {
+        List<Interest> interests = mDataBaseManager.getAllInterests();
+        for (Interest interest : interests) {
+            if (interest.getPercentage() < MIN_POPULAR_PERCENTAGE)
+                interests.remove(interest);
+        }
+        return interests;
     }
 }

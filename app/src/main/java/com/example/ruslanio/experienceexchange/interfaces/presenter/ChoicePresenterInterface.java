@@ -8,7 +8,5 @@ import com.igalata.bubblepicker.model.PickerItem;
 
 public interface ChoicePresenterInterface extends BasePresenterInterface {
 
-    void onInterestSelected(PickerItem pickerItem);
-
-    void onInterestDeselected(PickerItem pickerItem);
+    boolean onReady();
 }

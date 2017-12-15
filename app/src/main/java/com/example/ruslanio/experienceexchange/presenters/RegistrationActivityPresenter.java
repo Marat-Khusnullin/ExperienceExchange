@@ -3,8 +3,11 @@ package com.example.ruslanio.experienceexchange.presenters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 
 import com.example.ruslanio.experienceexchange.R;
+import com.example.ruslanio.experienceexchange.database.DataBaseManager;
+import com.example.ruslanio.experienceexchange.database.model.User;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.RegistrationActivityPresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.RegistrationActivityViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
@@ -22,10 +25,17 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 public class RegistrationActivityPresenter extends BasePresenter<RegistrationActivityViewInterface> implements RegistrationActivityPresenterInterface {
 
     private ApiManager mApiManager;
+    private DataBaseManager mDataBaseManager;
 
     public RegistrationActivityPresenter(RegistrationActivityViewInterface view) {
         super(view);
+    }
+
+    @Override
+    public void onInit(Bundle saveInstanceState) {
+        super.onInit(saveInstanceState);
         mApiManager = ApiManager.getInstance();
+        mDataBaseManager = DataBaseManager.getInstance(mView.getContext());
     }
 
     @Override
@@ -52,10 +62,9 @@ public class RegistrationActivityPresenter extends BasePresenter<RegistrationAct
     }
 
     private void saveData(Integer id, String token) {
-        SharedPreferences preferences = mView.getContext().getSharedPreferences(MAIN_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(ID_KEY, id)
-                .putString(TOKEN_KEY, token)
-                .apply();
+        User user = new User();
+        user.setId(id);
+        user.setToken(token);
+        mDataBaseManager.updateCurrentUser(user);
     }
 }

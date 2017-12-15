@@ -19,5 +19,9 @@ public interface InterestsDao extends BaseDao<Interest> {
     @Query("SELECT * FROM table_interests")
     List<Interest> getAll();
 
+    @Query("DELETE FROM table_interests")
+    void clearInterests();
 
+    @Query("SELECT * FROM table_interests WHERE interestName = :name LIMIT 1")
+    Interest getByName(String name);
 }

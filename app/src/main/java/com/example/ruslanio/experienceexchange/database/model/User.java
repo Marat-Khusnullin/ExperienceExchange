@@ -10,10 +10,30 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "table_users")
 public class User extends BaseModel{
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
 
     private String login;
+
+    private String token;
+
+    private boolean isInterestsChosen;
+
+    public boolean isInterestsChosen() {
+        return isInterestsChosen;
+    }
+
+    public void setInterestsChosen(boolean interestsChosen) {
+        isInterestsChosen = interestsChosen;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public int getId() {
         return id;

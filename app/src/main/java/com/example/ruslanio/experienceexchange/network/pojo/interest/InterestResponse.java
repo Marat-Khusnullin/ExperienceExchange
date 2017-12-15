@@ -1,20 +1,22 @@
 
-package com.example.ruslanio.experienceexchange.network.pojo.registration;
+package com.example.ruslanio.experienceexchange.network.pojo.interest;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RegistrationResponce {
+public class InterestResponse {
 
     @SerializedName("status")
     @Expose
     private Integer status;
     @SerializedName("result")
     @Expose
-    private Result result;
+    private List<Result> result = null;
     @SerializedName("error")
     @Expose
     private String error;
+
 
     public Integer getStatus() {
         return status;
@@ -24,11 +26,11 @@ public class RegistrationResponce {
         this.status = status;
     }
 
-    public Result getResult() {
+    public List<Result> getResult() {
         return result;
     }
 
-    public void setResult(Result result) {
+    public void setResult(List<Result> result) {
         this.result = result;
     }
 

@@ -1,6 +1,7 @@
 package com.example.ruslanio.experienceexchange.database.model;
 
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -11,11 +12,29 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "table_interests")
 public class Interest extends BaseModel{
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
 
     private String interestName;
+    private Double percentage;
+    private boolean isClient = false;
 
+
+    public boolean isClient() {
+        return isClient;
+    }
+
+    public void setClient(boolean client) {
+        isClient = client;
+    }
+
+    public Double getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(Double percentage) {
+        this.percentage = percentage;
+    }
 
     public int getId() {
         return id;

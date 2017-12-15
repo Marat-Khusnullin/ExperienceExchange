@@ -15,6 +15,9 @@ import java.util.List;
 public interface UsersDao extends BaseDao<User>{
 
     @Query("SELECT * FROM table_users")
-    List<User> getAll();
+    List<User> getUser();
+
+    @Query("DELETE FROM table_users")
+    void clearTable();
 
 }

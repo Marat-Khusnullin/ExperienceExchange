@@ -10,4 +10,6 @@ public interface MainViewInterface extends BaseViewInterface {
     void showHome();
 
     void showInProgress();
+
+    void showMyCourses();
 }

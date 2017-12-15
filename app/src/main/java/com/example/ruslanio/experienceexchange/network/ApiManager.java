@@ -2,6 +2,7 @@ package com.example.ruslanio.experienceexchange.network;
 
 import com.example.ruslanio.experienceexchange.network.body.LoginBody;
 import com.example.ruslanio.experienceexchange.network.body.RegistrationBody;
+import com.example.ruslanio.experienceexchange.network.pojo.interest.InterestResponse;
 import com.example.ruslanio.experienceexchange.network.pojo.login.LoginResponce;
 import com.example.ruslanio.experienceexchange.network.pojo.registration.RegistrationResponce;
 import com.example.ruslanio.experienceexchange.network.retrofit.GetRequest;
@@ -54,4 +55,7 @@ public class ApiManager {
         return mPostRequest.register(registrationBody);
     }
 
+    public Observable<InterestResponse> getAllInterests(String token){
+        return mGetRequest.getAllInterests(token);
+    }
 }

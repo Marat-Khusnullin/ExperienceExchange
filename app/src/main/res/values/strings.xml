@@ -33,4 +33,7 @@
     <string name="tell_us_what_you_like">Tell us what you like!</string>
     <string name="details">Details...</string>
     <string name="available_lessons">Available lessons</string>
+    <string name="edit">Edit</string>
+    <string name="your_interests">Your interests:</string>
+    <string name="about_me">About me:</string>
 </resources>

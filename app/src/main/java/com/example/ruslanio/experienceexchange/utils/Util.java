@@ -25,4 +25,11 @@ public class Util {
         return bitmap;
     }
 
+    public static boolean checkCode(int code){
+        if (code/100 == 2 || code/100 == 3)
+            return true;
+        else
+            return false;
+
+    }
 }

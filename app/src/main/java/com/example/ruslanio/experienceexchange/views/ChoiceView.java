@@ -1,10 +1,13 @@
 package com.example.ruslanio.experienceexchange.views;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.widget.Button;
 
 import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.adapters.BubbleInterestAdapter;
+import com.example.ruslanio.experienceexchange.database.model.Interest;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.ChoicePresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.ChoiceViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BaseActivity;
@@ -22,64 +25,48 @@ import butterknife.BindView;
  * Created by Ruslanio on 29.11.2017.
  */
 
-public class ChoiceView extends BaseActivity<ChoicePresenterInterface> implements ChoiceViewInterface{
+public class ChoiceView extends BaseActivity<ChoicePresenterInterface> implements ChoiceViewInterface {
 
-    @BindView(R.id.interest_bubble_picker)
-    BubblePicker mBubblePicker;
+    private static final String TAG_BUBBLE_PICKER_HOLDER = "bubble_picker_holder";
 
     @BindView(R.id.btn_ready)
     Button mReady;
-
-    private BubbleInterestAdapter mAdapter;
 
     @Override
     protected ChoicePresenterInterface getPresenter() {
         return new ChoicePresenter(this);
     }
 
+
     @Override
     protected void onInit() {
-        List<String> strings = new ArrayList<>();
-        strings.add("string");
-        strings.add("string");
-        strings.add("string");
-        strings.add("string");
-        strings.add("string");
-        strings.add("string");
 
-
-        mAdapter = new BubbleInterestAdapter(strings,getContext());
-        mBubblePicker.setAdapter(mAdapter);
-        mBubblePicker.setCenterImmediately(true);
-        mBubblePicker.setListener(new BubblePickerListener() {
-            @Override
-            public void onBubbleSelected(PickerItem pickerItem) {
-                mPresenter.onInterestSelected(pickerItem);
-            }
-
-            @Override
-            public void onBubbleDeselected(PickerItem pickerItem) {
-                mPresenter.onInterestDeselected(pickerItem);
-            }
-        });
-
-        mReady.setOnClickListener(btn ->{
-            Intent intent = new Intent(getContext(),MainView.class);
+        mReady.setOnClickListener(btn -> {
+            Intent intent = new Intent(getContext(), MainView.class);
             startActivity(intent);
         });
+
+    }
+
+    @Override
+    public void nextView(List<Integer> ids) {
+        Intent intent = new Intent(getContext(), MainView.class);
+        intent.putIntegerArrayListExtra(KEY_INTERESTS_ID_LIST, (ArrayList<Integer>) ids);
+        startActivity(intent);
     }
 
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        mBubblePicker.onPause();
-    }
+    public void showBubblePicker(List<Interest> interests){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment bubblePickerHolder = fragmentManager.findFragmentByTag(TAG_BUBBLE_PICKER_HOLDER);
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mBubblePicker.onResume();
+        if (bubblePickerHolder == null)
+            bubblePickerHolder = BubblePickerHolderView.getInstance(interests);
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.container_bubble_picker,bubblePickerHolder,TAG_BUBBLE_PICKER_HOLDER)
+                .commit();
     }
 
     @Override

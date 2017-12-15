@@ -41,9 +41,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"/>
 
-    <com.igalata.bubblepicker.rendering.BubblePicker
-        android:id="@+id/interest_bubble_picker"
+    <FrameLayout
+        android:id="@+id/container_bubble_picker"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:backgroundColor="@color/white_background"/>
+        android:layout_height="match_parent"/>
+
 </LinearLayout>
