@@ -1,7 +1,10 @@
 package com.example.ruslanio.experienceexchange.database.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+
+import java.util.List;
 
 /**
  * Created by Ruslanio on 13.12.2017.
@@ -13,12 +16,15 @@ public class Course extends BaseModel {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    private boolean my;
     private String courseName;
     private String author;
     private int likesNumber;
     private String description;
     private boolean isLiked;
     private int availableLessons;
+    @Ignore
+    private List<Lesson> lessons;
 
     public Course(String courseName, String author, int likesNumber) {
         this.courseName = courseName;
@@ -29,6 +35,22 @@ public class Course extends BaseModel {
     public Course() {
     }
 
+
+    public boolean isMy() {
+        return my;
+    }
+
+    public void setMy(boolean my) {
+        this.my = my;
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
+    }
 
     public int getAvailableLessons() {
         return availableLessons;

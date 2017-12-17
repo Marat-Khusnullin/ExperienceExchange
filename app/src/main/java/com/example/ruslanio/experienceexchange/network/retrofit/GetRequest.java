@@ -14,7 +14,7 @@ import retrofit2.http.Header;
 
 public interface GetRequest {
 
-    @GET("interests")
+    @GET("api/v1/interests")
     Observable<InterestResponse> getAllInterests(@Header("token") String token);
 
 }

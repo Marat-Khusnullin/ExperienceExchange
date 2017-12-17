@@ -2,6 +2,7 @@ package com.example.ruslanio.experienceexchange.network;
 
 import com.example.ruslanio.experienceexchange.network.body.LoginBody;
 import com.example.ruslanio.experienceexchange.network.body.RegistrationBody;
+import com.example.ruslanio.experienceexchange.network.pojo.image.ImageResponce;
 import com.example.ruslanio.experienceexchange.network.pojo.interest.InterestResponse;
 import com.example.ruslanio.experienceexchange.network.pojo.login.LoginResponce;
 import com.example.ruslanio.experienceexchange.network.pojo.registration.RegistrationResponce;
@@ -9,8 +10,13 @@ import com.example.ruslanio.experienceexchange.network.retrofit.GetRequest;
 import com.example.ruslanio.experienceexchange.network.retrofit.PostRequest;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.io.File;
+
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -20,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiManager {
     private static ApiManager mApiManager;
-    private final static String BASE_URL = "http://18.221.121.255:8080/exex/api/v1/";
+    private final static String BASE_URL = "http://18.221.121.255:8080/exex/";
 
     private final PostRequest mPostRequest;
     private final GetRequest mGetRequest;
@@ -57,5 +63,11 @@ public class ApiManager {
 
     public Observable<InterestResponse> getAllInterests(String token){
         return mGetRequest.getAllInterests(token);
+    }
+
+    public Observable<ImageResponce> uploadImage(File image){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),image);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file",null,requestBody);
+        return mPostRequest.loadImage(requestBody);
     }
 }

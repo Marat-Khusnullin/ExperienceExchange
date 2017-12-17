@@ -28,8 +28,8 @@ public interface BaseDao<T extends BaseModel> {
     void update(T... objects);
 
     @Insert
-    void add(T object);
+    Long add(T object);
 
     @Insert
-    void add(T... objects);
+    List<Long> add(T... objects);
 }

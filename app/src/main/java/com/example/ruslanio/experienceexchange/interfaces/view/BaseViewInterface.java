@@ -10,7 +10,15 @@ import android.support.v4.app.DialogFragment;
  */
 
 public interface BaseViewInterface {
-//    DialogFragment addDialog(DialogFragment dialogFragment, String tag);
+    DialogFragment addDialog(DialogFragment dialogFragment, String tag);
+
+    void dismissDialog(String tag);
+
+    void showDialog(String tag);
+
+    void hideDialog(String tag);
+
+    //    DialogFragment addDialog(DialogFragment dialogFragment, String tag);
 //    void dismissDialog(String tag);
 //    void showDialog(String tag);
 //    void hideDialog(String tag);

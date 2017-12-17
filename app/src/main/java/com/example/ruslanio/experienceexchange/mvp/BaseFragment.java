@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.ruslanio.experienceexchange.interfaces.presenter.BasePresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.BaseViewInterface;
+import com.example.ruslanio.experienceexchange.utils.managers.DialogManager;
 
 import butterknife.ButterKnife;
 
@@ -22,10 +24,11 @@ import butterknife.ButterKnife;
  * Created by Ruslanio on 06.11.2017.
  */
 
-public abstract class BaseFragment<T extends BasePresenterInterface> extends Fragment implements BaseViewInterface {
-
+public abstract class BaseFragment<T extends BasePresenterInterface> extends Fragment implements BaseViewInterface, BaseConstants {
 
     protected T mPresenter;
+
+    private DialogManager mDialogManager;
 
     protected abstract T getPresenter();
     @LayoutRes
@@ -37,6 +40,25 @@ public abstract class BaseFragment<T extends BasePresenterInterface> extends Fra
         return inflater.inflate(getLayout(),container, false);
     }
 
+    @Override
+    public DialogFragment addDialog(DialogFragment dialogFragment, String tag) {
+        return mDialogManager.addDialog(dialogFragment, tag);
+    }
+
+    @Override
+    public void dismissDialog(String tag) {
+        mDialogManager.dismissDialog(tag);
+    }
+
+    @Override
+    public void showDialog(String tag) {
+        mDialogManager.showDialog(tag);
+    }
+
+    @Override
+    public void hideDialog(String tag) {
+        mDialogManager.hideDialog(tag);
+    }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -68,6 +90,7 @@ public abstract class BaseFragment<T extends BasePresenterInterface> extends Fra
         super.onCreate(savedInstanceState);
         if (mPresenter == null)
             mPresenter = getPresenter();
+        mDialogManager = new DialogManager(this);
         mPresenter.onCreate(savedInstanceState);
     }
 

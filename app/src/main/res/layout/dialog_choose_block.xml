@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="@dimen/extra_large_padding"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+            android:layout_width="match_parent"
+            style="@style/Label"
+            android:gravity="center"
+            android:textSize="@dimen/large_text_size"
+            android:text="@string/choose_block_type"
+            android:layout_height="wrap_content"/>
+
+        <RadioGroup
+            android:layout_margin="@dimen/medium_margin"
+            android:id="@+id/block_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rb_block_text"
+                style="@style/Label.Secondary"
+                android:text="@string/text_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rb_block_image"
+                style="@style/Label.Secondary"
+                android:text="@string/image_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/rb_block_video"
+                style="@style/Label.Secondary"
+                android:enabled="false"
+                android:text="@string/video_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+
+
+        <LinearLayout
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/btn_block_cancel"
+                style="@style/Button.Flat"
+                android:text ="@string/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/btn_block_ok"
+                style="@style/Button.Flat"
+                android:text ="@string/ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

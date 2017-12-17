@@ -7,16 +7,20 @@ import android.content.Context;
 
 import com.example.ruslanio.experienceexchange.database.dao.CourseDao;
 import com.example.ruslanio.experienceexchange.database.dao.InterestsDao;
+import com.example.ruslanio.experienceexchange.database.dao.LessonBlockDao;
+import com.example.ruslanio.experienceexchange.database.dao.LessonDao;
 import com.example.ruslanio.experienceexchange.database.dao.UsersDao;
 import com.example.ruslanio.experienceexchange.database.model.Course;
 import com.example.ruslanio.experienceexchange.database.model.Interest;
+import com.example.ruslanio.experienceexchange.database.model.Lesson;
+import com.example.ruslanio.experienceexchange.database.model.LessonBlock;
 import com.example.ruslanio.experienceexchange.database.model.User;
 
 /**
  * Created by Ruslanio on 04.12.2017.
  */
 
-@Database(entities = {Interest.class, User.class, Course.class}, version = 1)
+@Database(entities = {Interest.class, User.class, Course.class, Lesson.class, LessonBlock.class}, version = 1)
 public abstract class ExExDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "database_name";
@@ -33,6 +37,10 @@ public abstract class ExExDatabase extends RoomDatabase {
     public abstract UsersDao getUsersDao();
 
     public abstract CourseDao getCourseDao();
+
+    public abstract LessonDao getLessonDao();
+
+    public abstract LessonBlockDao getLessonBlockDao();
 
     private static ExExDatabase create(Context context) {
         return Room.databaseBuilder(context, ExExDatabase.class, DB_NAME)

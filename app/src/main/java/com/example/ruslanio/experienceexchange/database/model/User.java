@@ -17,7 +17,18 @@ public class User extends BaseModel{
 
     private String token;
 
+    private String fullName;
+
     private boolean isInterestsChosen;
+
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
     public boolean isInterestsChosen() {
         return isInterestsChosen;

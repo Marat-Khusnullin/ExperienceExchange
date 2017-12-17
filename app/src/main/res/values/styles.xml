@@ -54,8 +54,17 @@
         <item name="android:textColor">@color/white_background</item>
     </style>
     
-    <style name="Input">
+    <style name="Input.SingleLine">
         <item name="android:lines">1</item>
+
+    </style>
+
+    <style name="AnimationDialog" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/show_dialog</item>
+        <item name="android:windowExitAnimation">@anim/hide_dialog</item>
+    </style>
+
+    <style name="Input">
         <item name="android:gravity">start</item>
         <item name="android:imeOptions">flagNoExtractUi</item>
         <item name="android:colorActivatedHighlight">@color/accent</item>

@@ -36,4 +36,26 @@
     <string name="edit">Edit</string>
     <string name="your_interests">Your interests:</string>
     <string name="about_me">About me:</string>
+    <string name="lesson_number">Lesson №</string>
+    <string name="lesson_name">Lesson name</string>
+    <string name="add_block">ADD BLOCK</string>
+    <string name="done">DONE</string>
+    <string name="text">Text</string>
+    <string name="create_course">CREATE COURSE</string>
+    <string name="oops_looks_like_you_don_t_have_your_own_courses_right_now">Oops! Looks like you don\'t have your own courses right now!</string>
+    <string name="choose_block_type">CHOOSE BLOCK TYPE</string>
+    <string name="text_block">Text block</string>
+    <string name="video_block">Video block</string>
+    <string name="image_block">Image block</string>
+    <string name="cancel">CANCEL</string>
+    <string name="ok">OK</string>
+    <string name="choose_image">CHOOSE IMAGE</string>
+    <string name="image_was_not_chosen">Image was not chosen</string>
+    <string name="please_try_again">Please, try again</string>
+    <string name="course_creating">Course creating</string>
+    <string name="course_name">Course name</string>
+    <string name="course_brief_description">Course brief description</string>
+    <string name="add_image">ADD IMAGE</string>
+    <string name="add_lesson">Add lesson</string>
+    <string name="name">Name</string>
 </resources>

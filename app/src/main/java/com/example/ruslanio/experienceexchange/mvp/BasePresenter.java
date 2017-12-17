@@ -16,11 +16,8 @@ import com.example.ruslanio.experienceexchange.utils.rxbus.RxBus;
  * Created by Ruslanio on 06.11.2017.
  */
 
-public abstract class BasePresenter<T extends BaseViewInterface> implements BasePresenterInterface{
+public abstract class BasePresenter<T extends BaseViewInterface> implements BasePresenterInterface, BaseConstants{
 
-    protected static final String MAIN_PREF_NAME = "main_pref";
-    protected static final String TOKEN_KEY = "key_token";
-    protected static final String ID_KEY = "key_id";
 
     private RxBus mRxBus;
     protected T mView;
@@ -49,7 +46,7 @@ public abstract class BasePresenter<T extends BaseViewInterface> implements Base
 
 
     protected SharedPreferences getDefaultPreferences() {
-        return mContext.getSharedPreferences(MAIN_PREF_NAME, Context.MODE_PRIVATE);
+        return mContext.getSharedPreferences(MAIN_PREFERENCES, Context.MODE_PRIVATE);
     }
 
     @Override
