@@ -22,7 +22,7 @@ public interface PostRequest {
 
     @Multipart
     @POST("images")
-    Observable<ImageResponce> loadImage(@Part("file") RequestBody image);
+    Observable<ImageResponce> loadImage(@Part MultipartBody.Part image);
 
     @POST("api/v1/login")
     Observable<LoginResponce> login(@Body LoginBody loginBody);

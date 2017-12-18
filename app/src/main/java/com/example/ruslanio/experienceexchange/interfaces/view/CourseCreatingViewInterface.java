@@ -1,6 +1,7 @@
 package com.example.ruslanio.experienceexchange.interfaces.view;
 
 import com.example.ruslanio.experienceexchange.database.model.Lesson;
+import com.example.ruslanio.experienceexchange.database.model.temporary.TempLesson;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 
 public interface CourseCreatingViewInterface extends BaseViewInterface{
-    void showOverView(List<Lesson> lessons);
+    void showOverView(List<TempLesson> lessons);
 
-    void showLesson();
+    void showLesson(int lessonCount);
 }

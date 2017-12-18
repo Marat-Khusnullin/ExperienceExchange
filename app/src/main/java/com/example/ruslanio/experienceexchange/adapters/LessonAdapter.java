@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.database.model.Lesson;
+import com.example.ruslanio.experienceexchange.database.model.temporary.TempLesson;
 import com.example.ruslanio.experienceexchange.utils.views.EntitledTextView;
 
 import java.util.Collections;
@@ -23,9 +24,9 @@ import butterknife.ButterKnife;
 
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder> {
 
-    private List<Lesson> mLessons = Collections.emptyList();
+    private List<TempLesson> mLessons = Collections.emptyList();
 
-    public void setLessons(List<Lesson> lessons) {
+    public void setLessons(List<TempLesson> lessons) {
         mLessons = lessons;
         notifyDataSetChanged();
     }
@@ -62,8 +63,8 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
 
         void bind(int position){
-            Lesson lesson = mLessons.get(position);
-            mName.setText(lesson.getName());
+            TempLesson tempLesson = mLessons.get(position);
+            mName.setText(tempLesson.getName());
             mLessonCount.setText(mLessonCount.getText().toString() + (position + 1));
             mClose.setOnClickListener(btn -> {
                 mLessons.remove(position);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.example.ruslanio.experienceexchange.database.DataBaseManager;
 import com.example.ruslanio.experienceexchange.database.model.Lesson;
+import com.example.ruslanio.experienceexchange.database.model.temporary.TempLesson;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.CourseCreatingPresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.CourseCreatingViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
@@ -35,7 +36,12 @@ public class CourseCreatingPresenter extends BasePresenter<CourseCreatingViewInt
 
     @Subscriber(tag = BusEvents.TAG_LESSON_CREATED)
     public void onLessonCreated(){
-        List<Lesson> lessons = mDataBaseManager.getTemporaryLessons();
-        mView.showOverView(lessons);
+        List<TempLesson> tempLessons = mDataBaseManager.getTemporaryLessons();
+        mView.showOverView(tempLessons);
+    }
+
+    @Subscriber(tag = BusEvents.TAG_CREATE_LESSON)
+    public void onCreateLesson(Integer lessonCount){
+        mView.showLesson(lessonCount);
     }
 }

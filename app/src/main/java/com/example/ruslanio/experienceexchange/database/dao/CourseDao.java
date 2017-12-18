@@ -14,9 +14,7 @@ import java.util.List;
 @Dao
 public interface CourseDao extends BaseDao<Course> {
 
-    @Query("SELECT * FROM table_courses WHERE my = false")
-    List<Course> getAll();
+    @Query("SELECT * FROM table_courses WHERE my = :isMy")
+    List<Course> getAll(boolean isMy);
 
-    @Query("SELECT * FROM table_courses WHERE my = true")
-    List<Course> getAllMy();
 }

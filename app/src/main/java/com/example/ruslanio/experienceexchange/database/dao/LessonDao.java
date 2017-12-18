@@ -13,6 +13,4 @@ import java.util.List;
 @Dao
 public interface LessonDao extends BaseDao<Lesson> {
 
-    @Query("SELECT * FROM table_lessons WHERE isTemporary = true")
-    List<Lesson> getAllTemporary();
 }

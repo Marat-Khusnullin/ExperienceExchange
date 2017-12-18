@@ -5,4 +5,5 @@ package com.example.ruslanio.experienceexchange.interfaces.presenter;
  */
 
 public interface CourseCreatingOverviewPresenterInterface extends BasePresenterInterface {
+    void onAddLesson(Integer lessonCount);
 }

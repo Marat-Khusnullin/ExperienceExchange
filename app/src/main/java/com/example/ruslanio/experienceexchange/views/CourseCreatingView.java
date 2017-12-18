@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.database.model.Lesson;
+import com.example.ruslanio.experienceexchange.database.model.temporary.TempLesson;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.CourseCreatingPresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.CourseCreatingViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BaseActivity;
@@ -31,9 +32,9 @@ public class CourseCreatingView extends BaseActivity<CourseCreatingPresenterInte
 
 
     @Override
-    public void showOverView(List<Lesson> lessons){
+    public void showOverView(List<TempLesson> lessons){
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment overView = fragmentManager.findFragmentByTag(TAG_LESSON);
+        Fragment overView = fragmentManager.findFragmentByTag(TAG_OVERVIEW);
 
         if (overView == null)
             overView = CourseCreatingOverviewView.getInstance(lessons);
@@ -44,12 +45,12 @@ public class CourseCreatingView extends BaseActivity<CourseCreatingPresenterInte
     }
 
     @Override
-    public void showLesson(){
+    public void showLesson(int lessonCount){
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment lesson = fragmentManager.findFragmentByTag(TAG_LESSON);
 
         if (lesson == null)
-            lesson = CourseCreatingLessonView.getInstance();
+            lesson = CourseCreatingLessonView.getInstance(lessonCount);
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.container_course_creating,lesson, TAG_LESSON)

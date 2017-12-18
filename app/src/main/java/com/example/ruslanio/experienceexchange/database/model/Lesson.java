@@ -22,11 +22,20 @@ public class Lesson extends BaseModel {
 
     private String name;
     private String description;
-    private boolean isTemporary;
+    private int count;
+
     private long courseId;
     @Ignore
     private List<LessonBlock> blocks;
 
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public long getCourseId() {
         return courseId;
@@ -34,14 +43,6 @@ public class Lesson extends BaseModel {
 
     public void setCourseId(long courseId) {
         this.courseId = courseId;
-    }
-
-    public boolean isTemporary() {
-        return isTemporary;
-    }
-
-    public void setTemporary(boolean temporary) {
-        isTemporary = temporary;
     }
 
     public int getId() {

@@ -66,8 +66,8 @@ public class ApiManager {
     }
 
     public Observable<ImageResponce> uploadImage(File image){
-        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),image);
-        MultipartBody.Part part = MultipartBody.Part.createFormData("file",null,requestBody);
-        return mPostRequest.loadImage(requestBody);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),image);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file",image.getName(),requestBody);
+        return mPostRequest.loadImage(part);
     }
 }

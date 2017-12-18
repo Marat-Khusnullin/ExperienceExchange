@@ -10,17 +10,24 @@ import com.example.ruslanio.experienceexchange.database.dao.InterestsDao;
 import com.example.ruslanio.experienceexchange.database.dao.LessonBlockDao;
 import com.example.ruslanio.experienceexchange.database.dao.LessonDao;
 import com.example.ruslanio.experienceexchange.database.dao.UsersDao;
+import com.example.ruslanio.experienceexchange.database.dao.temporary.TempBlockDao;
+import com.example.ruslanio.experienceexchange.database.dao.temporary.TempLessonDao;
 import com.example.ruslanio.experienceexchange.database.model.Course;
 import com.example.ruslanio.experienceexchange.database.model.Interest;
 import com.example.ruslanio.experienceexchange.database.model.Lesson;
 import com.example.ruslanio.experienceexchange.database.model.LessonBlock;
 import com.example.ruslanio.experienceexchange.database.model.User;
+import com.example.ruslanio.experienceexchange.database.model.temporary.TempBlock;
+import com.example.ruslanio.experienceexchange.database.model.temporary.TempLesson;
 
 /**
  * Created by Ruslanio on 04.12.2017.
  */
 
-@Database(entities = {Interest.class, User.class, Course.class, Lesson.class, LessonBlock.class}, version = 1)
+@Database(entities = {Interest.class, User.class,
+        Course.class, Lesson.class,
+        LessonBlock.class, TempLesson.class,
+        TempBlock.class}, version = 1)
 public abstract class ExExDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "database_name";
@@ -41,6 +48,10 @@ public abstract class ExExDatabase extends RoomDatabase {
     public abstract LessonDao getLessonDao();
 
     public abstract LessonBlockDao getLessonBlockDao();
+
+    public abstract TempLessonDao getTempLessonDao();
+
+    public abstract TempBlockDao getTempBlockDao();
 
     private static ExExDatabase create(Context context) {
         return Room.databaseBuilder(context, ExExDatabase.class, DB_NAME)

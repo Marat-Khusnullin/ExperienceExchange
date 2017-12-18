@@ -12,6 +12,7 @@ public class BusEvents {
 
     public static final String TAG_BLOCK_CHOSEN = "tag_block_chosen";
     public static final String TAG_LESSON_CREATED = "tag_lesson_created";
+    public static final String TAG_CREATE_LESSON = "tag_create_lesson";
 
 
 }

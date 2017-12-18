@@ -3,6 +3,7 @@ package com.example.ruslanio.experienceexchange.views;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,7 @@ public class CourseCreatingLessonView extends BaseFragment<CourseCreatingLessonP
         implements CourseCreatingLessonViewInterface {
 
     private static final String TAG_CHOOSE_BLOCK = "tag_choose_block";
+    private static final String KEY_LESSON_COUNT = "key_lesson_count";
 
     @BindView(R.id.btn_lesson_done)
     Button mDone;
@@ -55,12 +57,19 @@ public class CourseCreatingLessonView extends BaseFragment<CourseCreatingLessonP
         return new CourseCreatingLessonPresenter(this);
     }
 
-    public static CourseCreatingLessonView getInstance(){
-        return new CourseCreatingLessonView();
+    public static CourseCreatingLessonView getInstance(int lessonCount){
+        CourseCreatingLessonView view = new CourseCreatingLessonView();
+        Bundle args = new Bundle();
+        args.putInt(KEY_LESSON_COUNT, lessonCount);
+        view.setArguments(args);
+        return view;
     }
     @Override
     protected void onInit() {
         super.onInit();
+
+        int count = getArguments().getInt(KEY_LESSON_COUNT);
+        mLessonCount.setText(mLessonCount.getText().toString() + count);
 
         mAddBlock.setOnClickListener(btn -> {
             addDialog(ChooseBlockDialog.getInstance(), TAG_CHOOSE_BLOCK);
@@ -68,6 +77,7 @@ public class CourseCreatingLessonView extends BaseFragment<CourseCreatingLessonP
 
         mDone.setOnClickListener(btn -> {
             View currentView;
+
             for (int i = 0; i < mBlocksHolder.getChildCount(); i++){
                 currentView = mBlocksHolder.getChildAt(i);
                 switch (currentView.getId()){

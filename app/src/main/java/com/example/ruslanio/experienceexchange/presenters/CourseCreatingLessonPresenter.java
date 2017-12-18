@@ -9,6 +9,8 @@ import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.database.DataBaseManager;
 import com.example.ruslanio.experienceexchange.database.model.Lesson;
 import com.example.ruslanio.experienceexchange.database.model.LessonBlock;
+import com.example.ruslanio.experienceexchange.database.model.temporary.TempBlock;
+import com.example.ruslanio.experienceexchange.database.model.temporary.TempLesson;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.CourseCreatingLessonPresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.CourseCreatingLessonViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
@@ -31,7 +33,7 @@ public class CourseCreatingLessonPresenter extends BasePresenter<CourseCreatingL
         implements CourseCreatingLessonPresenterInterface {
     private ApiManager mApiManager;
     private DataBaseManager mDataBaseManager;
-    private List<LessonBlock> mBlocks;
+    private List<TempBlock> mBlocks;
     private int mCount = -1;
     private static final String KEY_COUNT = "key_block_count";
 
@@ -46,7 +48,8 @@ public class CourseCreatingLessonPresenter extends BasePresenter<CourseCreatingL
         mDataBaseManager = DataBaseManager.getInstance(mView.getContext());
         mBlocks = new ArrayList<>();
 
-        mCount = saveInstanceState.getInt(KEY_COUNT, -2);
+        if (saveInstanceState != null)
+            mCount = saveInstanceState.getInt(KEY_COUNT, -2);
         if (mCount < 0) {
             mCount = 0;
         }
@@ -69,7 +72,7 @@ public class CourseCreatingLessonPresenter extends BasePresenter<CourseCreatingL
 
     @Override
     public void onTextBlock(String text) {
-        saveBlock(BLOCK_TEXT,text);
+        saveBlock(BLOCK_TEXT, text);
     }
 
     @Override
@@ -94,17 +97,17 @@ public class CourseCreatingLessonPresenter extends BasePresenter<CourseCreatingL
 
     @Override
     public void buildLesson(String lessonName) {
-        Lesson lesson = new Lesson();
+        TempLesson lesson = new TempLesson();
         lesson.setName(lessonName);
         lesson.setBlocks(mBlocks);
-        mDataBaseManager.insertLesson(lesson);
+        mDataBaseManager.insertTemporaryLesson(lesson);
         publish(BusEvents.TAG_LESSON_CREATED);
     }
 
 
     private void saveBlock(int type, String value) {
-        LessonBlock block = new LessonBlock();
-        block.setOrderNumber(mCount);
+        TempBlock block = new TempBlock();
+        block.setOrder(mCount);
         block.setType(type);
         block.setValue(value);
         mBlocks.add(block);

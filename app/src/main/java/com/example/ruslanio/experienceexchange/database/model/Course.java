@@ -26,15 +26,6 @@ public class Course extends BaseModel {
     @Ignore
     private List<Lesson> lessons;
 
-    public Course(String courseName, String author, int likesNumber) {
-        this.courseName = courseName;
-        this.author = author;
-        this.likesNumber = likesNumber;
-    }
-
-    public Course() {
-    }
-
 
     public boolean isMy() {
         return my;
