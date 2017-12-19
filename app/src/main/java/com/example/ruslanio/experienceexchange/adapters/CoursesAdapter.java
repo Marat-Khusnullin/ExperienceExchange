@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.database.model.Course;
+import com.example.ruslanio.experienceexchange.utils.views.EntitledTextView;
 import com.like.LikeButton;
 
 import java.util.Collections;
@@ -72,11 +73,11 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
         @BindView(R.id.course_author_avatar)
         ImageView mAuthorAvatar;
         @BindView(R.id.course_available_lessons)
-        TextView mAvailableLessons;
+        EntitledTextView mAvailableLessons;
 
         public CourseViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         void bind(int position) {
@@ -86,6 +87,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
             mAuthor.setText(course.getAuthor());
             mLikeCount.setText(String.valueOf(course.getLikesNumber()));
             mDescription.setText(course.getDescription());
+            if (course.getLessons() != null)
+                mAvailableLessons.setText(mAvailableLessons.getTitle() + course.getLessons().size());
+            else
+                mAvailableLessons.setText(mAvailableLessons.getTitle() + course.getAvailableLessons());
 
             boolean isLiked = course.isLiked();
             mLikeButton.setLiked(isLiked);
@@ -101,6 +106,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
                     mLikeCount.setText(String.valueOf(count));
                 });
 
+            }
+
+            if (course.isMy()) {
+                mToProcess.setVisibility(View.INVISIBLE);
             }
 
         }

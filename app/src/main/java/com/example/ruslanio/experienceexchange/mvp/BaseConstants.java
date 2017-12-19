@@ -9,6 +9,7 @@ public interface BaseConstants {
     String KEY_BLOCK_ID = "key_block_id";
     String TOKEN_KEY = "key_token";
     String ID_KEY = "key_id";
+    String KEY_IS_FROM_CHOICE = "key_is_from_choice";
 
     int BLOCK_TEXT = 0;
     int BLOCK_IMAGE = 1;

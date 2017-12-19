@@ -49,8 +49,7 @@ public class LoginActivity extends BaseActivity<LoginActivityPresenterInterface>
             startActivity(intent);
         });
         mForgotPass.setOnClickListener(btn -> {
-            Intent intent = new Intent(getContext(), ChoiceView.class);
-            startActivity(intent);
+            showSnackbar("I don't care!");
         });
     }
 

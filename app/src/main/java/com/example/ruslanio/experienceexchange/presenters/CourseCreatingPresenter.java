@@ -44,4 +44,9 @@ public class CourseCreatingPresenter extends BasePresenter<CourseCreatingViewInt
     public void onCreateLesson(Integer lessonCount){
         mView.showLesson(lessonCount);
     }
+
+    @Subscriber(tag = BusEvents.TAG_COURSE_CREATED)
+    public void onCourseCreated(){
+        mView.toMain();
+    }
 }

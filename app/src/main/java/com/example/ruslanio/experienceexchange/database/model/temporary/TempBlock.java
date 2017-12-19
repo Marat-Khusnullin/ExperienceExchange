@@ -3,6 +3,7 @@ package com.example.ruslanio.experienceexchange.database.model.temporary;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.util.TableInfo;
 
 import com.example.ruslanio.experienceexchange.database.model.BaseModel;
 
@@ -14,10 +15,11 @@ import com.example.ruslanio.experienceexchange.database.model.BaseModel;
         foreignKeys = @ForeignKey(
                 entity = TempLesson.class,
                 parentColumns = "id",
-                childColumns = "tempLessonId"))
+                childColumns = "tempLessonId",
+                onDelete = ForeignKey.CASCADE))
 public class TempBlock extends BaseModel {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private int type;
     private String value;

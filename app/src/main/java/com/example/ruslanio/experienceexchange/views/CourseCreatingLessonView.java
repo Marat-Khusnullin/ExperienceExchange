@@ -18,10 +18,14 @@ import com.example.ruslanio.experienceexchange.interfaces.presenter.CourseCreati
 import com.example.ruslanio.experienceexchange.interfaces.view.CourseCreatingLessonViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BaseFragment;
 import com.example.ruslanio.experienceexchange.presenters.CourseCreatingLessonPresenter;
+import com.example.ruslanio.experienceexchange.utils.BlockInfoHolder;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,26 +81,33 @@ public class CourseCreatingLessonView extends BaseFragment<CourseCreatingLessonP
 
         mDone.setOnClickListener(btn -> {
             View currentView;
-
+            BlockInfoHolder holder;
+            List<BlockInfoHolder> holders = new ArrayList<>();
             for (int i = 0; i < mBlocksHolder.getChildCount(); i++){
+                holder = new BlockInfoHolder();
                 currentView = mBlocksHolder.getChildAt(i);
                 switch (currentView.getId()){
                     case R.id.block_text:
                         TextInputEditText editText = currentView.findViewById(R.id.et_block_text);
                         String text = editText.getText().toString();
-                        mPresenter.onTextBlock(text);
+                        holder.setType(BLOCK_TEXT);
+                        holder.setCount(i);
+                        holder.setValue(text);
                         break;
                     case R.id.block_image:
                         ImageView image = currentView.findViewById(R.id.iv_block_image);
                         String uri = image.getContentDescription().toString();
-                        mPresenter.onImageBlock(uri);
+                        holder.setType(BLOCK_IMAGE);
+                        holder.setCount(i);
+                        holder.setValue(uri);
                         break;
                     case R.id.rb_block_video:
                         break;
 
                 }
+                holders.add(holder);
             }
-            mPresenter.buildLesson(mLessonName.getText().toString());
+            mPresenter.buildLesson(mLessonName.getText().toString(), holders, count);
         });
     }
 

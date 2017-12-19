@@ -2,7 +2,9 @@ package com.example.ruslanio.experienceexchange.database.dao;
 
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.example.ruslanio.experienceexchange.database.model.BaseModel;
 import com.example.ruslanio.experienceexchange.database.model.Interest;
@@ -21,15 +23,15 @@ public interface BaseDao<T extends BaseModel> {
     @Delete
     void delete(T... objects);
 
-    @Delete
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(T object);
 
-    @Delete
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(T... objects);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     Long add(T object);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     List<Long> add(T... objects);
 }

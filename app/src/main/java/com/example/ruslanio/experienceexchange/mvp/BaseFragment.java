@@ -69,6 +69,7 @@ public abstract class BaseFragment<T extends BasePresenterInterface> extends Fra
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         onInit();
+        onInit(savedInstanceState);
         mPresenter.onInit(savedInstanceState);
     }
 
@@ -95,6 +96,10 @@ public abstract class BaseFragment<T extends BasePresenterInterface> extends Fra
     }
 
     protected void onInit() {
+    }
+
+    protected void onInit(Bundle savedInstanceState){
+
     }
 
     public void showToast(@StringRes int text) {

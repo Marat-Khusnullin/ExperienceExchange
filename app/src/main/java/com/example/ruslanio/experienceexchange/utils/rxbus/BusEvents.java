@@ -15,4 +15,5 @@ public class BusEvents {
     public static final String TAG_CREATE_LESSON = "tag_create_lesson";
 
 
+    public static final String TAG_COURSE_CREATED = "tag_course_created";
 }

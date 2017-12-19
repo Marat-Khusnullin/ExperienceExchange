@@ -51,11 +51,25 @@ public class DataBaseManager {
         insertInterest(interests);
     }
 
+    public List<Course> getAllMyCourses(){
+        List<Course> courses = mDatabase.getCourseDao().getAll(true);
+        for (Course course:courses){
+            List<Lesson> lessons = mDatabase.getLessonDao().getLessonsByCourseId(course.getId());
+            course.setLessons(lessons);
+        }
+        return courses;
+    }
+
+    public List<Interest> getUserInterests(){
+        return mDatabase.getInterestsDao().getByCurrentUser(true);
+    }
+
     public User getCurrentUser(){
         return mDatabase.getUsersDao().getUser().get(0);
     }
 
     public void updateCurrentUser(User user){
+        user.setFullName(user.getFirstName()+ " " + user.getLastName());
         mDatabase.getUsersDao().clearTable();
         mDatabase.getUsersDao().add(user);
     }
@@ -64,12 +78,16 @@ public class DataBaseManager {
         return getCurrentUser().getToken();
     }
 
+    public int getCurrentUserId(){
+        return getCurrentUser().getId();
+    }
+
     public Interest getInterestByName(String name){
         return mDatabase.getInterestsDao().getByName(name);
     }
 
     public void updateInterest(Interest interest){
-        mDatabase.getInterestsDao().update(interest);
+        mDatabase.getInterestsDao().add(interest);
     }
 
 
@@ -90,6 +108,9 @@ public class DataBaseManager {
         return tempLessons;
     }
 
+    public void deleteAllTemporaryLessons(){
+        mDatabase.getTempLessonDao().deleteAll();
+    }
 
     public void insertTemporaryLesson(TempLesson tempLesson){
         long id = mDatabase.getTempLessonDao().add(tempLesson);
@@ -123,6 +144,9 @@ public class DataBaseManager {
         }
     }
 
+    public void deleteTempLesson(TempLesson tempLesson){
+        mDatabase.getTempLessonDao().delete(tempLesson);
+    }
 
     public List<Lesson> TempLessonsToRawLessons(List<TempLesson> tempLessons){
         List<Lesson> result = new ArrayList<>();
@@ -140,6 +164,7 @@ public class DataBaseManager {
                 blocks.add(block);
             }
             lesson.setBlocks(blocks);
+            result.add(lesson);
         }
         return result;
     }

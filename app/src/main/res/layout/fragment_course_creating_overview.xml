@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/course_toolbar"
@@ -12,111 +12,140 @@
         android:background="@color/primary_dark"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
-
-          <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
-              android:layout_width="wrap_content"
-              style="@style/Label.White"
-              android:layout_centerVertical="true"
-              android:textSize="@dimen/large_text_size"
-              android:text="@string/course_creating"
-              android:layout_height="wrap_content"/>
-
-          <ImageButton
-              android:id="@+id/ibtn_course_done"
-              android:layout_margin="@dimen/medium_margin"
-              android:layout_centerVertical="true"
-              android:background="@color/transparent"
-              android:src="@drawable/ic_arrow_forward"
-              android:layout_alignParentRight="true"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"/>
-      </RelativeLayout>
-
-
-
-    </android.support.v7.widget.Toolbar>
-
-    <android.support.v7.widget.CardView
-        android:layout_margin="@dimen/medium_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:padding="@dimen/medium_padding"
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
-                android:layout_width="match_parent"
-                style="@style/Label.Bold"
-                android:textSize="@dimen/large_text_size"
-                android:text="@string/base_information"
-                android:layout_height="wrap_content"/>
+                style="@style/Label.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/course_creating"
+                android:textSize="@dimen/large_text_size"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_course_done"
+                style="@style/Button.Flat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/done"
+                android:textColor="@color/white_text"/>
+        </RelativeLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_course_name"
-                    style="@style/Input.SingleLine"
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:hint="@string/course_name"
-                    android:inputType="text"/>
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/medium_padding">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_course_description"
-                    style="@style/Input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:hint="@string/course_brief_description"
-                    android:imeActionId="@+id/et_course_name"
-                    android:inputType="text"/>
-            </android.support.design.widget.TextInputLayout>
+                    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+                        style="@style/Label.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/base_information"
+                        android:textSize="@dimen/large_text_size"/>
 
-            <ImageView
-                android:id="@+id/iv_course_cover"
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/et_course_name"
+                            style="@style/Input.SingleLine"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:hint="@string/course_name"
+                            android:inputType="text"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/et_course_description"
+                            style="@style/Input"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:hint="@string/course_brief_description"
+                            android:imeActionId="@+id/et_course_name"
+                            android:inputType="text"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+                        style="@style/Label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/theme"
+                        android:textSize="@dimen/large_text_size"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_course_creating_interest_chose"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+                        android:id="@+id/t_course_creating_chosen_interest"
+                        android:visibility="gone"
+                        style="@style/Label.Secondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Choosed"/>
+
+                    <ImageView
+                        android:id="@+id/iv_course_cover"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:id="@+id/btn_course_add_image"
+                        style="@style/Button.Flat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_image"/>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_course_lessons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <Button
-                android:id="@+id/btn_course_add_image"
-                style="@style/Button.Flat"
-                android:text="@string/add_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
-
-
+                android:id="@+id/btn_course_add_lesson"
+                style="@style/Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin"
+                android:text="@string/add_lesson"/>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_course_lessons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/btn_course_add_lesson"
-        android:layout_margin="@dimen/medium_margin"
-        style="@style/Button"
-        android:text="@string/add_lesson"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

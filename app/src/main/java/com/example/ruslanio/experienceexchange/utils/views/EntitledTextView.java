@@ -16,7 +16,7 @@ public class EntitledTextView extends TypefaceTextView {
     private String mTitle;
 
     public String getTitle() {
-        return mTitle;
+        return mTitle + ": ";
     }
 
     public void setTitle(String title) {
@@ -63,4 +63,5 @@ public class EntitledTextView extends TypefaceTextView {
         setText(builder.toString());
         invalidate();
     }
+
 }

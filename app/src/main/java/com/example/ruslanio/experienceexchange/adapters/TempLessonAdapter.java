@@ -8,7 +8,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.ruslanio.experienceexchange.R;
-import com.example.ruslanio.experienceexchange.database.model.Lesson;
 import com.example.ruslanio.experienceexchange.database.model.temporary.TempLesson;
 import com.example.ruslanio.experienceexchange.utils.views.EntitledTextView;
 
@@ -22,9 +21,14 @@ import butterknife.ButterKnife;
  * Created by Ruslanio on 17.12.2017.
  */
 
-public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder> {
+public class TempLessonAdapter extends RecyclerView.Adapter<TempLessonAdapter.LessonViewHolder> {
 
     private List<TempLesson> mLessons = Collections.emptyList();
+    private OnTempLessonClickListener mOnTempLessonClickListener;
+
+    public void setOnTempLessonClickListener(OnTempLessonClickListener onTempLessonClickListener) {
+        mOnTempLessonClickListener = onTempLessonClickListener;
+    }
 
     public void setLessons(List<TempLesson> lessons) {
         mLessons = lessons;
@@ -67,10 +71,15 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
             mName.setText(tempLesson.getName());
             mLessonCount.setText(mLessonCount.getText().toString() + (position + 1));
             mClose.setOnClickListener(btn -> {
+                mOnTempLessonClickListener.onClose(mLessons.get(position));
                 mLessons.remove(position);
                 notifyDataSetChanged();
             });
 
         }
+    }
+
+    public interface OnTempLessonClickListener{
+        void onClose(TempLesson tempLesson);
     }
 }

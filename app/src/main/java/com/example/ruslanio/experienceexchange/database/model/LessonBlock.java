@@ -11,7 +11,8 @@ import android.arch.persistence.room.PrimaryKey;
         foreignKeys = @ForeignKey(
         entity = Lesson.class,
         parentColumns = "id",
-        childColumns = "lessonId"))
+        childColumns = "lessonId",
+        onDelete = ForeignKey.CASCADE))
 public class LessonBlock extends BaseModel {
 
     @PrimaryKey

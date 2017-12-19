@@ -19,7 +19,6 @@ public class Interest extends BaseModel{
     private Double percentage;
     private boolean isClient = false;
 
-
     public boolean isClient() {
         return isClient;
     }

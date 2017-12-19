@@ -1,5 +1,7 @@
 package com.example.ruslanio.experienceexchange.presenters;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.ruslanio.experienceexchange.R;
@@ -9,6 +11,8 @@ import com.example.ruslanio.experienceexchange.interfaces.presenter.ChoicePresen
 import com.example.ruslanio.experienceexchange.interfaces.view.ChoiceViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
 import com.example.ruslanio.experienceexchange.network.ApiManager;
+import com.example.ruslanio.experienceexchange.network.body.interest.InterestBody;
+import com.example.ruslanio.experienceexchange.network.body.interest.InterestObject;
 import com.example.ruslanio.experienceexchange.network.pojo.interest.Result;
 import com.example.ruslanio.experienceexchange.utils.Util;
 
@@ -70,11 +74,43 @@ public class ChoicePresenter extends BasePresenter<ChoiceViewInterface> implemen
 
     @Override
     public boolean onReady(){
-        if (mInterestIds.size() != 0){
-            mView.nextView(mInterestIds);
+            SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences(MAIN_PREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(KEY_IS_FROM_CHOICE,true);
+            editor.apply();
+
+
+        InterestBody body = new InterestBody();
+        List<InterestObject> interestObjects = new ArrayList<>();
+
+        for (Interest interest:mDataBaseManager.getUserInterests()){
+            InterestObject interestObject = new InterestObject();
+            interestObject.setId(interest.getId());
+            interestObject.setName(interest.getInterestName());
+            interestObject.setPercentage(interest.getPercentage());
+            interestObjects.add(interestObject);
+        }
+
+        body.setInterests(interestObjects);
+        String token = mDataBaseManager.getCurrentToken();
+        int id = mDataBaseManager.getCurrentUserId();
+
+            mApiManager.attachInterests(token, id, body)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(interestSendResponce -> {
+                        if (Util.checkCode(interestSendResponce.getStatus())){
+                            mView.showSnackbar("Interests are added!");
+                            mView.nextView(mInterestIds);
+                        } else {
+                            mView.showSnackbar(R.string.connection_error);
+                        }
+                    }, throwable -> {
+                        mView.showSnackbar(R.string.server_error);
+                        throwable.printStackTrace();
+                    });
+
+
             return true;
-        } else
-            return false;
     }
 
 

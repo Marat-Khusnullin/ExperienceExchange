@@ -2,15 +2,21 @@ package com.example.ruslanio.experienceexchange.presenters;
 
 import android.os.Bundle;
 
+import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.database.DataBaseManager;
 import com.example.ruslanio.experienceexchange.database.model.Course;
 import com.example.ruslanio.experienceexchange.database.model.Interest;
 import com.example.ruslanio.experienceexchange.interfaces.presenter.HomePresenterInterface;
 import com.example.ruslanio.experienceexchange.interfaces.view.HomeViewInterface;
 import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
+import com.example.ruslanio.experienceexchange.network.ApiManager;
+import com.example.ruslanio.experienceexchange.network.pojo.course.news.Result;
+import com.example.ruslanio.experienceexchange.utils.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by Ruslanio on 29.11.2017.
@@ -19,6 +25,7 @@ import java.util.List;
 public class HomePresenter extends BasePresenter<HomeViewInterface> implements HomePresenterInterface {
 
     private DataBaseManager mDataBaseManager;
+    private ApiManager mApiManager;
     private static final double MIN_POPULAR_PERCENTAGE = 0.0;
 
     public HomePresenter(HomeViewInterface view) {
@@ -30,6 +37,7 @@ public class HomePresenter extends BasePresenter<HomeViewInterface> implements H
         super.onInit(saveInstanceState);
 
         mDataBaseManager = DataBaseManager.getInstance(mView.getContext());
+        mApiManager = ApiManager.getInstance();
 
         mView.setThemes(getPopularInterests());
 
@@ -39,27 +47,36 @@ public class HomePresenter extends BasePresenter<HomeViewInterface> implements H
         authors.add("Victor Reznov");
         authors.add("Guy Richy");
 
-        List<Course> courses = new ArrayList<>();
-
-        Course course1 = new Course();
-        course1.setCourseName("How to learn russian in 4 days");
-        course1.setAuthor("Barrack Ivanovich Obama");
-        course1.setLiked(true);
-        course1.setLikesNumber(12);
-        course1.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in");
-
-        Course course2 = new Course();
-        course2.setCourseName("How to learn russian in 4 days");
-        course2.setAuthor("Barrack Ivanovich Obama");
-        course2.setLiked(false);
-        course2.setLikesNumber(4);
-        course2.setDescription("Just some random short description to test this shit, mothafucka!!!");
-
-        courses.add(course1);
-        courses.add(course2);
-
         mView.setAuthors(authors);
-        mView.setCourses(courses);
+
+        String token = mDataBaseManager.getCurrentToken();
+        int id = mDataBaseManager.getCurrentUserId();
+
+        mApiManager.getNews(token,id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(coursesNewsResponce -> {
+                    if (Util.checkCode(coursesNewsResponce.getStatus())){
+                        List<Course> courses = new ArrayList<>();
+                        List<Result> results = coursesNewsResponce.getResult();
+                        for (Result result: results){
+                            Course course = new Course();
+                            course.setId(result.getId());
+                            course.setCourseName(result.getTitle());
+                            course.setDescription(result.getSummary());
+                            course.setCoverImage(result.getCover());
+                            course.setAvailableLessons(result.getLessonsNumber());
+                            course.setLikesNumber(result.getLikersNumber());
+                            course.setAuthor("Author");
+                            courses.add(course);
+                        }
+                        mView.setCourses(courses);
+                    } else {
+                        mView.showSnackbar(R.string.connection_error);
+                    }
+                },throwable -> {
+                    mView.showSnackbar(R.string.server_error);
+                    throwable.printStackTrace();
+                });
 
     }
 

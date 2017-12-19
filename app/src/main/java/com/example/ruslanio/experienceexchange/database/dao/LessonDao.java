@@ -13,4 +13,6 @@ import java.util.List;
 @Dao
 public interface LessonDao extends BaseDao<Lesson> {
 
+    @Query("SELECT * FROM table_lessons WHERE courseId = :id")
+    List<Lesson> getLessonsByCourseId(int id);
 }

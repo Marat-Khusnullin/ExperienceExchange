@@ -1,5 +1,7 @@
 package com.example.ruslanio.experienceexchange.presenters;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.ruslanio.experienceexchange.R;
@@ -36,18 +38,22 @@ public class MainPresenter extends BasePresenter<MainViewInterface> implements M
 
         String token = mDataBaseManager.getCurrentToken();
 
-        mApiManager.getAllInterests(token)
-                .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(interestResponse -> Observable.fromIterable(interestResponse.getResult()))
-                .map(result -> {
-                    Interest interest = new Interest();
-                    interest.setId(result.getId());
-                    interest.setInterestName(result.getName());
-                    interest.setPercentage(result.getPercentage());
-                    return interest;
-                }).collectInto(new ArrayList<Interest>(), ArrayList::add)
-                .subscribe(interests -> mDataBaseManager.setNewInterests(interests),
-                        throwable -> mView.showSnackbar("Internet connection problem"));
+        SharedPreferences sharedPreference = mContext.getSharedPreferences(MAIN_PREFERENCES, Context.MODE_PRIVATE);
+        boolean isFromChoice = sharedPreference.getBoolean(KEY_IS_FROM_CHOICE, false);
+
+        if (!isFromChoice)
+            mApiManager.getAllInterests(token)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .flatMap(interestResponse -> Observable.fromIterable(interestResponse.getResult()))
+                    .map(result -> {
+                        Interest interest = new Interest();
+                        interest.setId(result.getId());
+                        interest.setInterestName(result.getName());
+                        interest.setPercentage(result.getPercentage());
+                        return interest;
+                    }).collectInto(new ArrayList<Interest>(), ArrayList::add)
+                    .subscribe(interests -> mDataBaseManager.setNewInterests(interests),
+                            throwable -> mView.showSnackbar("Internet connection problem"));
     }
 
     @Override

@@ -24,4 +24,7 @@ public interface InterestsDao extends BaseDao<Interest> {
 
     @Query("SELECT * FROM table_interests WHERE interestName = :name LIMIT 1")
     Interest getByName(String name);
+
+    @Query("SELECT * FROM table_interests WHERE isClient = :daun")
+    List<Interest> getByCurrentUser(boolean daun);
 }

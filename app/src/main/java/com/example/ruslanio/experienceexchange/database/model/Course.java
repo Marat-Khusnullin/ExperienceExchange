@@ -13,9 +13,10 @@ import java.util.List;
 @Entity(tableName = "table_courses")
 public class Course extends BaseModel {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
 
+    private String coverImage;
     private boolean my;
     private String courseName;
     private String author;
@@ -23,9 +24,26 @@ public class Course extends BaseModel {
     private String description;
     private boolean isLiked;
     private int availableLessons;
+    private int interestId;
     @Ignore
     private List<Lesson> lessons;
 
+
+    public int getInterestId() {
+        return interestId;
+    }
+
+    public void setInterestId(int interestId) {
+        this.interestId = interestId;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
 
     public boolean isMy() {
         return my;

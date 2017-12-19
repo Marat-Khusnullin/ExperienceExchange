@@ -13,4 +13,6 @@ public interface CourseCreatingViewInterface extends BaseViewInterface{
     void showOverView(List<TempLesson> lessons);
 
     void showLesson(int lessonCount);
+
+    void toMain();
 }

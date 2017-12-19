@@ -36,4 +36,5 @@ public class TypefaceTextView extends android.support.v7.widget.AppCompatTextVie
         }
 
     }
+
 }

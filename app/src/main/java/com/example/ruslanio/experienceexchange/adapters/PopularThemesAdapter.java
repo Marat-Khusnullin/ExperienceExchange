@@ -21,6 +21,12 @@ import butterknife.ButterKnife;
 
 public class PopularThemesAdapter extends RecyclerView.Adapter<PopularThemesAdapter.ThemeViewHolder> {
 
+    private OnInterestClickListener mOnInterestClickListener;
+
+    public void setOnInterestClickListener(OnInterestClickListener onInterestClickListener) {
+        mOnInterestClickListener = onInterestClickListener;
+    }
+
     private List<Interest> mThemes = Collections.emptyList();
 
     public void setThemes(List<Interest> themes) {
@@ -55,7 +61,14 @@ public class PopularThemesAdapter extends RecyclerView.Adapter<PopularThemesAdap
         }
 
         void bind(int position){
+
+            if (mOnInterestClickListener != null)
+                itemView.setOnClickListener(view -> mOnInterestClickListener.onClick(mThemes.get(position)));
             mThemeName.setText(mThemes.get(position).getInterestName());
         }
+    }
+
+    public interface OnInterestClickListener {
+        void onClick(Interest interest);
     }
 }

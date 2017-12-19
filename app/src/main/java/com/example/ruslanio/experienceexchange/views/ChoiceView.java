@@ -42,8 +42,7 @@ public class ChoiceView extends BaseActivity<ChoicePresenterInterface> implement
     protected void onInit() {
 
         mReady.setOnClickListener(btn -> {
-            Intent intent = new Intent(getContext(), MainView.class);
-            startActivity(intent);
+            mPresenter.onReady();
         });
 
     }

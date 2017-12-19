@@ -15,7 +15,7 @@ import java.util.List;
 @Entity(tableName = "table_temporary_lesson")
 public class TempLesson extends BaseModel {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     private int count;

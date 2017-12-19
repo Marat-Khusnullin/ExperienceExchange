@@ -16,4 +16,7 @@ public interface TempLessonDao extends BaseDao<TempLesson> {
 
     @Query("SELECT * FROM table_temporary_lesson")
     List<TempLesson> getAll();
+
+    @Query("DELETE FROM table_temporary_lesson")
+    void deleteAll();
 }

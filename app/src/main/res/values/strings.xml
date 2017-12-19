@@ -58,4 +58,6 @@
     <string name="add_image">ADD IMAGE</string>
     <string name="add_lesson">Add lesson</string>
     <string name="name">Name</string>
+    <string name="my_courses">My courses</string>
+    <string name="theme">Theme:</string>
 </resources>

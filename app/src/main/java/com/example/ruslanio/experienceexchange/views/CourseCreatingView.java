@@ -1,5 +1,6 @@
 package com.example.ruslanio.experienceexchange.views;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -55,6 +56,12 @@ public class CourseCreatingView extends BaseActivity<CourseCreatingPresenterInte
                 .beginTransaction()
                 .replace(R.id.container_course_creating,lesson, TAG_LESSON)
                 .commit();
+    }
+
+    @Override
+    public void toMain() {
+        Intent intent = new Intent(getContext(), MainView.class);
+        startActivity(intent);
     }
 
 
