@@ -65,13 +65,19 @@ public class DataBaseManager {
     }
 
     public User getCurrentUser(){
+        if(mDatabase.getUsersDao().getUser().size()!=0)
         return mDatabase.getUsersDao().getUser().get(0);
+        return null;
     }
 
     public void updateCurrentUser(User user){
         user.setFullName(user.getFirstName()+ " " + user.getLastName());
         mDatabase.getUsersDao().clearTable();
         mDatabase.getUsersDao().add(user);
+    }
+
+    public void clearUsers() {
+        mDatabase.getUsersDao().clearTable();
     }
 
     public String getCurrentToken(){
@@ -167,5 +173,10 @@ public class DataBaseManager {
             result.add(lesson);
         }
         return result;
+    }
+
+    public void deleteAll() {
+        mDatabase.getInterestsDao().clearInterests();
+        mDatabase.getCourseDao().clearCourses();
     }
 }

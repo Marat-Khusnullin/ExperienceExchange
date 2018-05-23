@@ -35,6 +35,7 @@
             <RadioButton
                 android:id="@+id/rb_block_image"
                 style="@style/Label.Secondary"
+                android:enabled="false"
                 android:text="@string/image_block"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

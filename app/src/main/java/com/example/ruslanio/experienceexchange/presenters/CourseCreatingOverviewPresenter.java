@@ -19,6 +19,7 @@ import com.example.ruslanio.experienceexchange.network.body.lesson.Block;
 import com.example.ruslanio.experienceexchange.network.body.lesson.LessonBody;
 import com.example.ruslanio.experienceexchange.network.pojo.course.added.Result;
 import com.example.ruslanio.experienceexchange.network.pojo.lesson.LessonAddedResponce;
+import com.example.ruslanio.experienceexchange.network.pojo.lesson.ResultLesson;
 import com.example.ruslanio.experienceexchange.utils.Util;
 import com.example.ruslanio.experienceexchange.utils.rxbus.BusEvents;
 
@@ -73,29 +74,46 @@ public class CourseCreatingOverviewPresenter extends BasePresenter<CourseCreatin
         course.setLikesNumber(0);
 
         int interestId = mDataBaseManager.getInterestByName(interest).getId();
+        int[] interstsIdAr = new int[1];
+        interstsIdAr[0] = interestId;
         course.setInterestId(interestId);
+       /* if(image!=null) {
+            Uri uri = Uri.parse(image);
+            String path = Util.getRealPathFromURI(uri, mView.getContext());
+            File file = new File(uri.toString());
+        }*/
+        if(image!=null) {
+            Uri uri = Uri.parse(image);
+            File file = new File(uri.toString());
+            mApiManager.uploadImage(file)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(imageResponce -> {
+                        if (Util.checkCode(imageResponce.getStatus())) {
+                            String imageToken = imageResponce.getResult();
+                            course.setCoverImage(imageToken);
+                            List<TempLesson> tempLessons = mDataBaseManager.getTemporaryLessons();
+                            List<Lesson> lessons = mDataBaseManager.TempLessonsToRawLessons(tempLessons);
+                            course.setLessons(lessons);
 
-        mApiManager.uploadImage(new File(Util.getRealPathFromURI(Uri.parse(image), mView.getContext())))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(imageResponce -> {
-                    if (Util.checkCode(imageResponce.getStatus())){
-                        String imageToken = imageResponce.getResult();
+                            mDataBaseManager.deleteAllTemporaryLessons();
+                            uploadCourse(course);
+                        } else {
+                            mView.showSnackbar(R.string.connection_error);
+                        }
+                    }, throwable -> {
 
-                        course.setCoverImage(imageToken);
-                        List<TempLesson> tempLessons = mDataBaseManager.getTemporaryLessons();
-                        List<Lesson> lessons = mDataBaseManager.TempLessonsToRawLessons(tempLessons);
-                        course.setLessons(lessons);
+                        mView.showSnackbar("Проблема с загрузкой изображения!");
+                        System.out.printf("1");
+                        throwable.printStackTrace();
+                    });
+        } else {
+            List<TempLesson> tempLessons = mDataBaseManager.getTemporaryLessons();
+            List<Lesson> lessons = mDataBaseManager.TempLessonsToRawLessons(tempLessons);
+            course.setLessons(lessons);
 
-                        mDataBaseManager.deleteAllTemporaryLessons();
-                        uploadCourse(course);
-                    } else {
-                        mView.showSnackbar(R.string.connection_error);
-                    }
-                }, throwable -> {
-                    mView.showSnackbar(R.string.server_error);
-                    throwable.printStackTrace();
-                });
-
+            mDataBaseManager.deleteAllTemporaryLessons();
+            uploadCourse(course);
+        }
 
 }
 
@@ -104,12 +122,13 @@ public class CourseCreatingOverviewPresenter extends BasePresenter<CourseCreatin
         body.setTitle(course.getCourseName());
         body.setSummary(course.getDescription());
         body.setCover(course.getCoverImage());
-        body.setInterest_id(course.getInterestId());
+        int [] ids = new int[1];
+        ids[0] = course.getInterestId();
+        body.setInterest_id(ids);
 
 
         String token = mDataBaseManager.getCurrentToken();
         int id = mDataBaseManager.getCurrentUserId();
-
         mApiManager.uploadCourse(token,id,body)
                 .subscribe(courseAddedResponce -> {
                     if (Util.checkCode(courseAddedResponce.getStatus())){
@@ -121,7 +140,7 @@ public class CourseCreatingOverviewPresenter extends BasePresenter<CourseCreatin
                         mView.showSnackbar(R.string.connection_error);
                     }
                 }, throwable -> {
-                    mView.showSnackbar(R.string.server_error);
+                    mView.showSnackbar("Ошибка загрузки курса!");
                     throwable.printStackTrace();
                 });
 
@@ -137,6 +156,7 @@ public class CourseCreatingOverviewPresenter extends BasePresenter<CourseCreatin
     private void onLessonsSend() {
         publish(BusEvents.TAG_COURSE_CREATED);
     }
+
 
 
     private class TempAsyncTask extends AsyncTask<Lesson, Integer, Void> {
@@ -156,7 +176,6 @@ public class CourseCreatingOverviewPresenter extends BasePresenter<CourseCreatin
 
         @Override
         protected Void doInBackground(Lesson... lessons) {
-
             for (Lesson lesson: lessons) {
                 LessonBody body = new LessonBody();
                 body.setName(lesson.getName());
@@ -186,7 +205,7 @@ public class CourseCreatingOverviewPresenter extends BasePresenter<CourseCreatin
                     Response<LessonAddedResponce> response = call.execute();
                     if (Util.checkCode(response.code())){
                         LessonAddedResponce lessonAddedResponce = response.body();
-                        com.example.ruslanio.experienceexchange.network.pojo.lesson.Result result =lessonAddedResponce.getResult();
+                        ResultLesson result =lessonAddedResponce.getResult();
                     } else {
                         System.out.println(response.code() + "");
                     }

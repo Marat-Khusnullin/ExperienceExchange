@@ -1,17 +1,22 @@
-
-package com.example.ruslanio.experienceexchange.network.pojo.lesson;
+package com.example.ruslanio.experienceexchange.network.pojo.course.news;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LessonAddedResponce {
+import java.util.List;
+
+/**
+ * Created by Марат on 22.05.2018.
+ */
+
+public class CourseResponse {
 
     @SerializedName("status")
     @Expose
     private Integer status;
     @SerializedName("result")
     @Expose
-    private ResultLesson result;
+    private CourseResult result = null;
 
     public Integer getStatus() {
         return status;
@@ -21,11 +26,11 @@ public class LessonAddedResponce {
         this.status = status;
     }
 
-    public ResultLesson getResult() {
+    public CourseResult getResult() {
         return result;
     }
 
-    public void setResult(ResultLesson result) {
+    public void setResult(CourseResult result) {
         this.result = result;
     }
 

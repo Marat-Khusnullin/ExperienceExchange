@@ -1,6 +1,7 @@
 package com.example.ruslanio.experienceexchange.presenters;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.database.DataBaseManager;
@@ -39,20 +40,12 @@ public class HomePresenter extends BasePresenter<HomeViewInterface> implements H
         mDataBaseManager = DataBaseManager.getInstance(mView.getContext());
         mApiManager = ApiManager.getInstance();
 
-        mView.setThemes(getPopularInterests());
-
-
-        List<String> authors = new ArrayList<>();
-        authors.add("John Kennedy");
-        authors.add("Victor Reznov");
-        authors.add("Guy Richy");
-
-        mView.setAuthors(authors);
+        getPopularInterests();
 
         String token = mDataBaseManager.getCurrentToken();
         int id = mDataBaseManager.getCurrentUserId();
 
-        mApiManager.getNews(token,id)
+        mApiManager.getNews(token,id, 0)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(coursesNewsResponce -> {
                     if (Util.checkCode(coursesNewsResponce.getStatus())){
@@ -66,7 +59,7 @@ public class HomePresenter extends BasePresenter<HomeViewInterface> implements H
                             course.setCoverImage(result.getCover());
                             course.setAvailableLessons(result.getLessonsNumber());
                             course.setLikesNumber(result.getLikersNumber());
-                            course.setAuthor("Author");
+                            course.setAuthor(result.getAuthor());
                             courses.add(course);
                         }
                         mView.setCourses(courses);
@@ -77,17 +70,61 @@ public class HomePresenter extends BasePresenter<HomeViewInterface> implements H
                     mView.showSnackbar(R.string.server_error);
                     throwable.printStackTrace();
                 });
+    }
 
+    private void getPopularInterests() {
+        mApiManager.getAllInterests(mDataBaseManager.getCurrentToken())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(interestResponse -> {
+                    if (Util.checkCode(interestResponse.getStatus())){
+                        List<com.example.ruslanio.experienceexchange.network.pojo.interest.Result> resultList = interestResponse.getResult();
+                        List<Interest> interests = new ArrayList<>();
+
+                        for (com.example.ruslanio.experienceexchange.network.pojo.interest.Result result: resultList){
+                            Interest interest = new Interest();
+                            interest.setPercentage(result.getPercentage());
+                            interest.setId(result.getId());
+                            interest.setInterestName(result.getName());
+                            interests.add(interest);
+                        }
+                        mView.setThemes(interests);
+                        mDataBaseManager.setNewInterests(interests);
+                    } else {
+                        mView.showSnackbar(interestResponse.getError());
+                    }
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    mView.showSnackbar(R.string.server_error);
+                });
     }
 
 
-
-    private List<Interest> getPopularInterests() {
-        List<Interest> interests = mDataBaseManager.getAllInterests();
-        for (Interest interest : interests) {
-            if (interest.getPercentage() < MIN_POPULAR_PERCENTAGE)
-                interests.remove(interest);
-        }
-        return interests;
+    public void showCoursesBySearch(String tags) {
+        mApiManager.getCoursesBySearch(mDataBaseManager.getCurrentToken(), tags)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(coursesNewsResponce -> {
+                    if (Util.checkCode(coursesNewsResponce.getStatus())){
+                        Toast.makeText(mContext, "ВСЕ ОКИЧ", Toast.LENGTH_SHORT).show();
+                        List<Course> courses = new ArrayList<>();
+                        List<Result> results = coursesNewsResponce.getResult();
+                        for (Result result: results){
+                            Course course = new Course();
+                            course.setId(result.getId());
+                            course.setCourseName(result.getTitle());
+                            course.setDescription(result.getSummary());
+                            course.setCoverImage(result.getCover());
+                            course.setAvailableLessons(result.getLessonsNumber());
+                            course.setLikesNumber(result.getLikersNumber());
+                            course.setAuthor(result.getAuthor());
+                            courses.add(course);
+                        }
+                        mView.setCourses(courses);
+                    } else {
+                        mView.showSnackbar(R.string.connection_error);
+                    }
+                },throwable -> {
+                    mView.showSnackbar("Проблема с загрузкой поиска!");
+                    throwable.printStackTrace();
+                });
     }
 }

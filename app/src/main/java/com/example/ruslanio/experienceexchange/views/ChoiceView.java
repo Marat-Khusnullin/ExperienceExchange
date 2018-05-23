@@ -40,7 +40,7 @@ public class ChoiceView extends BaseActivity<ChoicePresenterInterface> implement
 
     @Override
     protected void onInit() {
-
+        //mPresenter.checkForInterests();
         mReady.setOnClickListener(btn -> {
             mPresenter.onReady();
         });

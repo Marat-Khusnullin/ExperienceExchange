@@ -3,6 +3,8 @@ package com.example.ruslanio.experienceexchange.views;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ruslanio.experienceexchange.R;
@@ -51,6 +53,8 @@ public class ProfileView extends BaseFragment<ProfilePresenterInterface> impleme
     TextView mFirstName;
     @BindView(R.id.tv_profile_last_name)
     TextView mLastName;
+    @BindView(R.id.tv_profile_exit)
+    TextView mExitButton;
     @BindView(R.id.rv_profile_popular_themes)
     RecyclerView mUserInterests;
 
@@ -73,9 +77,11 @@ public class ProfileView extends BaseFragment<ProfilePresenterInterface> impleme
     @Override
     protected void onInit() {
         super.onInit();
+        mExitButton.setOnClickListener(view -> {
+            mPresenter.exitFromUser();
+        });
 
         mAdapter = new PopularThemesAdapter();
-
         mUserInterests.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         mUserInterests.setAdapter(mAdapter);
     }
@@ -95,6 +101,7 @@ public class ProfileView extends BaseFragment<ProfilePresenterInterface> impleme
        mKarma.setText(mKarma.getTitle() + user.getKarma() + "");
        mCommentsCount.setText(mCommentsCount.getTitle() + user.getComments() + "");
        mFinishedCourses.setText(mFinishedCourses.getTitle() + user.getFinished() + "");
+
     }
 
     @Override

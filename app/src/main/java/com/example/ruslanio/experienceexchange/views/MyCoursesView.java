@@ -56,6 +56,7 @@ public class MyCoursesView extends BaseFragment<MyCoursesPresenterInterface> imp
     protected void onInit() {
         super.onInit();
         mAdapter = new CoursesAdapter();
+        mAdapter.setContext(getContext());
 
         mMyCourses.setLayoutManager(new LinearLayoutManager(getContext()));
         mMyCourses.setAdapter(mAdapter);

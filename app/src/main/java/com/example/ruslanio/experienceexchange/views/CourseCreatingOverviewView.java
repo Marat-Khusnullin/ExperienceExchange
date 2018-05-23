@@ -103,7 +103,9 @@ public class CourseCreatingOverviewView extends BaseFragment<CourseCreatingOverv
         mDone.setOnClickListener(btn -> {
             String name = mName.getText().toString();
             String description = mDescription.getText().toString();
-            String image = mCourseCover.getContentDescription().toString();
+            String image = null;
+            if(mCourseCover.getContentDescription()!= null)
+            image = mCourseCover.getContentDescription().toString();
             String interestName= mChosenInterest.getText().toString();
 
             mPresenter.buildCourse(name, description, image, interestName);

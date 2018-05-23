@@ -5,4 +5,5 @@ package com.example.ruslanio.experienceexchange.interfaces.presenter;
  */
 
 public interface ProfilePresenterInterface extends BasePresenterInterface {
+    void exitFromUser();
 }

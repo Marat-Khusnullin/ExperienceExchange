@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ruslanio.experienceexchange.views.CourseViewActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:orientation="horizontal"
+        android:padding="@dimen/large_padding">
+
+        <ImageView
+            android:id="@+id/author_main_avatar"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_account_base_avatar"/>
+
+        <ImageButton
+            android:id="@+id/course_to_process_lamp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="3"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_lightbulb_empty_white"/>
+
+        <LinearLayout
+            android:layout_toRightOf="@+id/author_main_avatar"
+            android:layout_toLeftOf="@+id/course_to_process_lamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+                android:id="@+id/course_main_name"
+                style="@style/Label.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/extra_medium_text_size"/>
+
+            <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+                android:id="@+id/course_main_author"
+                style="@style/Label.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/medium_text_size"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <com.example.ruslanio.experienceexchange.utils.views.TypefaceTextView
+        android:id="@+id/course_short_main_description"
+        android:layout_below="@+id/main_layout"
+        style="@style/Label.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_margin"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_main_course_lessons"
+        android:layout_below="@+id/course_short_main_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+
+
+
+</RelativeLayout>

@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.ruslanio.experienceexchange">
+    package="com.example.ruslanio.experienceexchange">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".EEAplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".EEAplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.LoginActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".views.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:screenOrientation="portrait" android:name=".views.ChoiceView">
-        </activity>
-        <activity android:name=".views.RegistrationActivity" android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".views.MainView" android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".views.StartView" android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".views.CourseCreatingView" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".views.ChoiceView"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.RegistrationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.MainView"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.StartView"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.CourseCreatingView"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.CourseViewActivity" />
     </application>
 
 </manifest>

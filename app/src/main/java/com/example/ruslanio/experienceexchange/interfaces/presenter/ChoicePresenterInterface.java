@@ -9,4 +9,5 @@ import com.igalata.bubblepicker.model.PickerItem;
 public interface ChoicePresenterInterface extends BasePresenterInterface {
 
     boolean onReady();
+    void checkForInterests();
 }

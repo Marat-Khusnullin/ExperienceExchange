@@ -9,16 +9,16 @@ public class CourseBody {
     private String title;
     private String summary;
     private String cover;
-    private int interest_id;
+    private int[] interests;
 
     public CourseBody() {
     }
 
-    public CourseBody(String title, String summary, String cover, int interest_id) {
+    public CourseBody(String title, String summary, String cover, int[] interests) {
         this.title = title;
         this.summary = summary;
         this.cover = cover;
-        this.interest_id = interest_id;
+        this.interests = interests;
     }
 
     public String getTitle() {
@@ -45,11 +45,11 @@ public class CourseBody {
         this.cover = cover;
     }
 
-    public int getInterest_id() {
-        return interest_id;
+    public int[] getInterest_id() {
+        return interests;
     }
 
-    public void setInterest_id(int interest_id) {
-        this.interest_id = interest_id;
+    public void setInterest_id(int[] interest_id) {
+        this.interests = interest_id;
     }
 }

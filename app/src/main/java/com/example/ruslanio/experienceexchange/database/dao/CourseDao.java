@@ -17,4 +17,7 @@ public interface CourseDao extends BaseDao<Course> {
     @Query("SELECT * FROM table_courses WHERE my = :isMy")
     List<Course> getAll(boolean isMy);
 
+    @Query("DELETE FROM table_courses")
+    void clearCourses();
+
 }

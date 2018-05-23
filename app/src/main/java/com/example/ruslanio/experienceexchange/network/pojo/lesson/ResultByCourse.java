@@ -1,11 +1,15 @@
-
 package com.example.ruslanio.experienceexchange.network.pojo.lesson;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+import java.util.List;
+
+/**
+ * Created by Марат on 22.05.2018.
+ */
+
+public class ResultByCourse {
 
     @SerializedName("id")
     @Expose
@@ -13,9 +17,9 @@ public class Result {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("blocks")
+    @SerializedName("number")
     @Expose
-    private List<Block> blocks = null;
+    private int number;
 
     public Integer getId() {
         return id;
@@ -33,12 +37,11 @@ public class Result {
         this.name = name;
     }
 
-    public List<Block> getBlocks() {
-        return blocks;
+    public int getNumber() {
+        return number;
     }
 
-    public void setBlocks(List<Block> blocks) {
-        this.blocks = blocks;
+    public void setNumber(int number) {
+        this.number = number;
     }
-
 }

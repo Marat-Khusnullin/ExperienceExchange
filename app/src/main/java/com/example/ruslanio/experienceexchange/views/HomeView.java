@@ -2,6 +2,10 @@ package com.example.ruslanio.experienceexchange.views;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.adapters.PopularAuthorsAdapter;
@@ -24,12 +28,17 @@ import butterknife.BindView;
 
 public class HomeView extends BaseFragment<HomePresenterInterface> implements HomeViewInterface {
 
-    @BindView(R.id.rv_home_popular_authors)
-    RecyclerView mPopularAuthors;
+
     @BindView(R.id.rv_home_popular_themes)
     RecyclerView mPopularThemes;
     @BindView(R.id.rv_home_recomended_courses)
     RecyclerView mRecommendedCourses;
+    @BindView(R.id.home_toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.home_edit)
+    EditText editText;
+    @BindView(R.id.home_course_search)
+    ImageView searchImage;
 
     private PopularAuthorsAdapter mAuthorsAdapter;
     private PopularThemesAdapter mThemesAdapter;
@@ -48,14 +57,27 @@ public class HomeView extends BaseFragment<HomePresenterInterface> implements Ho
         mThemesAdapter = new PopularThemesAdapter();
         mCoursesAdapter = new CoursesAdapter();
 
-        mPopularAuthors.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        mCoursesAdapter.setContext(getContext());
+
         mPopularThemes.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         mRecommendedCourses.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecommendedCourses.setNestedScrollingEnabled(false);
 
-        mPopularAuthors.setAdapter(mAuthorsAdapter);
         mPopularThemes.setAdapter(mThemesAdapter);
         mRecommendedCourses.setAdapter(mCoursesAdapter);
+
+        searchImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(editText.getVisibility()!=View.VISIBLE) {
+                    editText.setVisibility(View.VISIBLE);
+                    editText.setText("Введите тэги");
+                } else {
+                    mPresenter.showCoursesBySearch(editText.getText().toString());
+                }
+            }
+        });
+
 
     }
 

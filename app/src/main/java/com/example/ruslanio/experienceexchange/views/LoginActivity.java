@@ -51,10 +51,12 @@ public class LoginActivity extends BaseActivity<LoginActivityPresenterInterface>
         mForgotPass.setOnClickListener(btn -> {
             showSnackbar("I don't care!");
         });
+        mPresenter.checkForLogin();
     }
 
     @Override
     protected int getLayout() {
         return R.layout.activity_login;
     }
+
 }

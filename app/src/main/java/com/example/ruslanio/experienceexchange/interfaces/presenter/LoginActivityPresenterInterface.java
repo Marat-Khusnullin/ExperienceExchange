@@ -6,4 +6,5 @@ package com.example.ruslanio.experienceexchange.interfaces.presenter;
 
 public interface LoginActivityPresenterInterface extends BasePresenterInterface{
     void onLogin(String login, String password);
+    void checkForLogin();
 }

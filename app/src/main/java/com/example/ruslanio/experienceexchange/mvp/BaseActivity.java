@@ -63,9 +63,9 @@ public abstract class BaseActivity<T extends BasePresenterInterface> extends App
             mPresenter = getPresenter();
         mPresenter.onCreate(savedInstanceState);
         mDialogManager = new DialogManager(this);
-
-        onInit();
         mPresenter.onInit(savedInstanceState);
+        onInit();
+
 
     }
 

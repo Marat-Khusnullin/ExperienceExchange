@@ -1,6 +1,8 @@
 package com.example.ruslanio.experienceexchange.presenters;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.ruslanio.experienceexchange.R;
 import com.example.ruslanio.experienceexchange.database.DataBaseManager;
@@ -12,6 +14,7 @@ import com.example.ruslanio.experienceexchange.mvp.BasePresenter;
 import com.example.ruslanio.experienceexchange.network.ApiManager;
 import com.example.ruslanio.experienceexchange.network.pojo.user.Result;
 import com.example.ruslanio.experienceexchange.utils.Util;
+import com.example.ruslanio.experienceexchange.views.LoginActivity;
 
 import java.util.List;
 
@@ -22,7 +25,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  */
 
 public class ProfilePresenter extends BasePresenter<ProfileViewInterface> implements ProfilePresenterInterface {
-
 
     private DataBaseManager mDataBaseManager;
     private ApiManager mApiManager;
@@ -45,22 +47,42 @@ public class ProfilePresenter extends BasePresenter<ProfileViewInterface> implem
         mApiManager.getProfileData(currentToken, currentId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userProfileResponce -> {
+                    Toast.makeText(mContext, userProfileResponce.getError(), Toast.LENGTH_SHORT).show();
                     if (Util.checkCode(userProfileResponce.getStatus())){
                         Result result = userProfileResponce.getResult();
                         user.setId(result.getId());
-                        user.setAge(result.getAge());
-                        user.setAbout(result.getAbout());
-                        user.setCity(result.getCity());
-                        user.setCountry(result.getCountry());
+                        if(result.getAge()!=null) {
+                            user.setAge(result.getAge());
+                        } else {
+                            user.setAge(0);
+                        }
+                        if(result.getAbout()!=null) {
+                            user.setAbout(result.getAbout());
+                        } else {
+                            user.setAbout("Не указано");
+                        }
+                        if(result.getCity()!=null) {
+                            user.setCity(result.getCity());
+                        } else {
+                            user.setCity("Не указано");
+                        }
+                        if(result.getCountry()!=null) {
+                            user.setCountry(result.getCountry());
+                        } else {
+                            user.setCountry("Не указано");
+                        }
                         user.setComments(result.getComments());
                         user.setCreated(result.getCreated());
                         user.setFinished(result.getFinished());
                         user.setFirstName(result.getFirstname());
                         user.setLastName(result.getLastname());
-                        user.setGender(result.getGender());
+                        if(result.getGender()!=null) {
+                            user.setAbout(result.getGender());
+                        } else {
+                            user.setGender("Не указано");
+                        }
                         user.setKarma(result.getKarma());
                         user.setTotalLikes(result.getLikes());
-                        mDataBaseManager.updateCurrentUser(user);
                         mView.setData(user);
                         List<Interest> interests = mDataBaseManager.getUserInterests();
                         mView.setInterests(interests);
@@ -69,9 +91,17 @@ public class ProfilePresenter extends BasePresenter<ProfileViewInterface> implem
                         mView.showSnackbar(R.string.connection_error);
                     }
                 }, throwable -> {
-                    mView.showSnackbar(R.string.server_error);
+                    mView.showSnackbar("Проблема получения данных о юзере!");
                     throwable.printStackTrace();
                 });
 
+    }
+
+    public void exitFromUser() {
+        mDataBaseManager.clearUsers();
+        mDataBaseManager.deleteAllTemporaryLessons();
+        mDataBaseManager.deleteAll();
+        Intent intent = new Intent(mContext, LoginActivity.class);
+        mContext.startActivity(intent);
     }
 }

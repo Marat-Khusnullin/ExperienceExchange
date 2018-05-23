@@ -1,5 +1,7 @@
 package com.example.ruslanio.experienceexchange.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ruslanio.experienceexchange.R;
+import com.example.ruslanio.experienceexchange.database.DataBaseManager;
 import com.example.ruslanio.experienceexchange.database.model.Course;
+import com.example.ruslanio.experienceexchange.network.ApiManager;
+import com.example.ruslanio.experienceexchange.network.pojo.course.news.CourseResult;
+import com.example.ruslanio.experienceexchange.utils.Util;
 import com.example.ruslanio.experienceexchange.utils.views.EntitledTextView;
+import com.example.ruslanio.experienceexchange.views.CourseViewActivity;
 import com.like.LikeButton;
 
 import java.util.Collections;
@@ -19,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by Ruslanio on 29.11.2017.
@@ -28,6 +36,9 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
 
     private List<Course> mCourses = Collections.emptyList();
     private OnCourseClickListener mOnCourseClickListener;
+    private Context mContext;
+    private DataBaseManager mDataBaseManager;
+    private ApiManager mApiManager;
 
     public void setCourses(List<Course> courses) {
         mCourses = courses;
@@ -95,9 +106,38 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
             boolean isLiked = course.isLiked();
             mLikeButton.setLiked(isLiked);
 
+            mDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, CourseViewActivity.class);
+                    intent.putExtra("courseId", course.getId());
+                    mContext.startActivity(intent);
+
+                }
+            });
+            mToProcess.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mApiManager = ApiManager.getInstance();
+                    mDataBaseManager = DataBaseManager.getInstance(mContext);
+                    mApiManager.subscribe(mDataBaseManager.getCurrentToken(), mDataBaseManager.getCurrentUserId(), course.getId())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(subscribeResponse -> {
+                                if (subscribeResponse.getStatus()==202){
+                                    mToProcess.setImageResource(R.drawable.ic_lightbulb_full_yellow);
+                                } else {
+                                    //mView.showSnackbar(R.string.connection_error);
+                                }
+                            },throwable -> {
+                                //mView.showSnackbar(R.string.server_error);
+                                throwable.printStackTrace();
+                            });
+
+                }
+            });
             if (mOnCourseClickListener != null) {
-                mToProcess.setOnClickListener(v -> mOnCourseClickListener.onToProcessClick(course));
-                mDetails.setOnClickListener(v -> mOnCourseClickListener.onDetailsClick(course));
+
+
                 mLikeButton.setOnClickListener(v -> {
                     mOnCourseClickListener.onLikeClick(course, isLiked);
 
@@ -116,6 +156,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
     }
 
 
+    public void setContext(Context context) {
+        this.mContext = context;
+    }
+
     public interface OnCourseClickListener {
         void onDetailsClick(Course course);
 
@@ -123,4 +167,6 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CourseVi
 
         void onToProcessClick(Course course);
     }
+
+
 }

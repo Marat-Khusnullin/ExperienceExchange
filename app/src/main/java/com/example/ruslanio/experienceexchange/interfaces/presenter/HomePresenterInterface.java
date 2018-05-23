@@ -9,4 +9,5 @@ import java.util.List;
  */
 
 public interface HomePresenterInterface extends BasePresenterInterface {
+    void showCoursesBySearch(String tag);
 }

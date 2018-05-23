@@ -9,6 +9,13 @@ public class UserProfileResponce {
     @SerializedName("status")
     @Expose
     private Integer status;
+
+
+
+    @SerializedName("error")
+    @Expose
+
+    private String error;
     @SerializedName("result")
     @Expose
     private Result result;
@@ -27,6 +34,14 @@ public class UserProfileResponce {
 
     public void setResult(Result result) {
         this.result = result;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 
 }

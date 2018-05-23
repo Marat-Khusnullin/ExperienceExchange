@@ -1,11 +1,13 @@
-
 package com.example.ruslanio.experienceexchange.network.pojo.course.news;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+/**
+ * Created by Марат on 22.05.2018.
+ */
 
+public class CourseResult {
     @SerializedName("id")
     @Expose
     private Integer id;
